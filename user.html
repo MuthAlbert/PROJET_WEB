@@ -17,10 +17,31 @@
             <li><a class="active" href="user.html">TORILLEC COMPANY</a></li>
             <li style="float:right"><a class="login" href="login.html">Log out</a></li>
         </ul>
-
-        <div id="popup" class="centered-block">
-            <div id="popup-details">
-                <button onclick="display_ticket()">AJOUTER UN TICKET</button>
+        <div class="centered-block">
+            <button onclick="togglePopup()">Ajouter un ticket</button>
+        </div>
+        <div id="popup-overlay">
+            <div class="popup-content">
+                <h2 class="mb-4"><b>AJOUTER UN TICKET</b></h2>
+                <div class="mb-3">
+                    <label for="choix" class="form-label">Types de frais*</label>
+                    <select id="types" class="form-select">
+                        <option value="RESTAURATION">RESTAURATION</option>
+                        <option value="LOGEMENT">LOGEMENT</option>
+                        <option value="TRANSPORT">TRANSPORT</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="dateInput" class="form-label">Date*</label>
+                    <input type="date" id="dateInput" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="prixInput" class="form-label">Prix*</label>
+                    <input type="number" id="prixInput" class="form-control">
+                </div>
+                <button onclick="submitTicket()" class="btn btn-primary mt-3 me-2">Soumettre</button>
+                <button onclick="togglePopup()" class="btn btn-secondary mt-3">Annuler</button>
+                <a href="javascript:void(0)" onclick="togglePopup()" class="popup-exit">X</a>
             </div>
         </div>
 
@@ -35,12 +56,10 @@
               </tr>
             </thead>
             <tbody id="ticketBody">
-
             </tbody>
         </table>
     </div>
     <script src="user.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
-
 </body>
 </html>

@@ -1,13 +1,51 @@
-.form-container {
-    max-width: 300px;
-    padding: 10px;
-    background-color: rgb(212, 208, 208);
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 98;
+    display: none; 
+}
+
+#popup-overlay.open{
+    display: block !important;
+}
+
+.popup-content {
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: #FFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popup-content p {
+    margin: 20px;
+}
+
+.popup-exit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-decoration: none;
+    color: #FFF;
+    background-color: red;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .centered-block {
     width: 50%;
-    /* margin: auto; */
     padding: 10px;
-    /* background-color: rgb(212, 208, 208); */
-    z-index: 1;
 }
