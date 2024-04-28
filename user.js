@@ -5,30 +5,21 @@ function submitTicket() {
     const etat = "En attente de traitement";
     
     if (type && date && prix) {
-        const tbody = document.getElementById("ticketBody");
-        const newRow = tbody.insertRow()
+        const newRow = document.getElementById("ticketBody").insertRow();
+        
+        newRow.insertCell(0).textContent = "";
+        newRow.insertCell(1).textContent = etat;
+        newRow.insertCell(2).textContent = type;
+        newRow.insertCell(3).textContent = date;
+        newRow.insertCell(4).textContent = prix;
 
-        const cellId = newRow.insertCell(0);
-        const cellEtat = newRow.insertCell(1);
-        const celltype = newRow.insertCell(2);
-        const celldate = newRow.insertCell(3);
-        const cellprix = newRow.insertCell(4);
         const cellModifier = newRow.insertCell(5);
-
-        // cellId.textContent = generateID();
-        cellId.textContent = "";
-        cellEtat.textContent = etat;
-        celltype.textContent = type;
-        celldate.textContent = date;
-        cellprix.textContent = prix;
-
         const btnModifier = document.createElement("button");
         btnModifier.textContent = "Modifier";
         btnModifier.onclick = function() {
             displayTicket(newRow);
         };
         cellModifier.appendChild(btnModifier);
-
         togglePopup();
     } else {
         alert("Veuillez remplir tous les champs !");
@@ -41,19 +32,40 @@ function togglePopup() {
 }
 
 function displayTicket(row) {
-    const cell = row.cells;
-    const id = cell[0].textContent;
-    const etat = cell[1].textContent;
-    const type = cell[2].textContent;
-    const date = cell[3].textContent;
-    const prix = cell[4].textContent;
+    const cellules = row.cells;
+    const id = cellules[0].textContent;
 
-    document.getElementById("types").value = type;
-    document.getElementById("dateInput").value = date;
-    document.getElementById("prixInput").value = prix;
-    document.getElementById("btnModifier").textContent = "Modifier";
-    // document.getElementById("btnModifier").onclick = function() {
-    //     soumettreModifications(id);
-    // };
+    document.getElementById("types").value = cellules[2].textContent;
+    document.getElementById("dateInput").value = cellules[3].textContent;
+    document.getElementById("prixInput").value = cellules[4].textContent;
+
+    const btnModifier = document.getElementById("btnModifier");
+    btnModifier.textContent = "Modifier";
+    btnModifier.onclick = function() {
+        // deleteCells(row, [2, 3, 4]);
+        // modification(id);
+    };
     togglePopup();
 }
+
+// function modification(id) {
+//     const ligneTicket = document.getElementById(id);
+//     if (ligneTicket) {
+//         const cellules = ligneTicket.cells;
+//         if (cellules.length >= 5) {
+//             const nouveauType = document.getElementById("types").value;
+//             const nouvelleDate = document.getElementById("dateInput").value;
+//             const nouveauPrix = document.getElementById("prixInput").value;
+
+//             cellules[2].textContent = nouveauType;
+//             cellules[3].textContent = nouvelleDate;
+//             cellules[4].textContent = nouveauPrix;
+//         }
+//     }
+// }
+
+// function deleteCells(row, indexes) {
+//     indexes.forEach(index => {
+//         row.deleteCell(index);
+//     });
+// }
