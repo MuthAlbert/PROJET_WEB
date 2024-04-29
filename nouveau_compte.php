@@ -24,16 +24,22 @@ $options = [
 
 // Récupération des données de connexions 
 if(isset($_POST['ok'])){
+    $nom = ['nom'];
+    $prenom = ['prenom'];
     $mail = $_POST['mail'];
     $username = $_POST['username'];
+    $phone = $_POST['phone'];
     $pwd = $_POST['pwd'];
 
-    $requete = $bdd->prepare("INSERT INTO utilisateur VALUES (:mail, :pwd, :username, 3)");
+    $requete = $bdd->prepare("INSERT INTO utilisateur VALUES (:nom, :prenom, :phone, :mail, :pwd, :username, 3)");
     $requete->execute(
         array(
+            "nom" => $nom,
+            "prenom" => $prenom,
             "mail" => $mail,
             "pwd" => $pwd,
             "username" => $username,
+            "phone" => $phone,
         )
     );
     $reponse = $requete->fetchall(PDO::FETCH_ASSOC);
