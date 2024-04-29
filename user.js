@@ -70,6 +70,7 @@ function modification(row) {
             cellules[2].textContent = nouveauType;
             cellules[3].textContent = nouvelleDate;
             cellules[4].textContent = nouveauPrix;
+            submitTicket();
         }
     }
 }
