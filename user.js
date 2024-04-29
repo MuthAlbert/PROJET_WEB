@@ -3,7 +3,18 @@ function submitTicket() {
     const date = document.getElementById("dateInput").value;
     const prix = document.getElementById("prixInput").value;
     const etat = "En attente de traitement";
-    
+    var xhr = new XMLHttpRequest();
+    var url = "commerciale.php";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Traitement de la réponse du script PHP si nécessaire
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send("type=" + type + "date=" + date + "prix=" + prix + "etat=" + etat); // Envoyer les données au script PHP
+
     if (type && date && prix) {
         const newRow = document.getElementById("ticketBody").insertRow();
         
