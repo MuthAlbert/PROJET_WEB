@@ -36,9 +36,9 @@
     <select name="categorie">
   <?php
     $db = new PDO("mysql:host=localhost;dbname=produit;charset=utf8mb4","root","");
-    $data = $db->query("SELECT * FROM categorie")->fetchAll();
-    foreach ($data as $categorie) {
-      echo "<option value=".$categorie['id'].">".$categorie['nom_categorie']."</option>";
+    $data = $db->query("SELECT * FROM utilsateur")->fetchAll();
+    foreach ($data as $utilisateur) {
+      echo "<option value=".$utilisateur['id'].">".$utilisateur['mail'].">".$utilisateur['prenom'].">".$utilisateur['nom'].">".$utilisateur['role']</option>";
     }
   ?>
   </select>
@@ -99,13 +99,13 @@
     if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action']=='delete'){
       $id=$_GET['id']; 
       $db = new PDO("mysql:host=localhost;dbname=produit;charset=utf8mb4","root","");
-      $stmt=$db->prepare("DELETE FROM produit WHERE id=:id");
+      $stmt=$db->prepare("DELETE FROM utilisateur WHERE id=:id");
       $stmt->bindParam (":id",$id);
 
       $stmt->execute();
 
       echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong></strong> Produit supprimé
+      <strong></strong> Utilisateur supprimé
       <button type="button" class="btn-close" data-bs-dismiss="alert"
           aria-label="Close"></button> 
       </div>';
