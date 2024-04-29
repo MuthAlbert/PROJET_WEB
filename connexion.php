@@ -1,4 +1,4 @@
-<?php
+<?php 
 //Paramètres de la connexion
 $host = '127.0.0.1';
 $db = 'utilisateur';
@@ -22,21 +22,33 @@ $options = [
     die('Erreur de connexion : ' . $e->getMessage());
    }
 
-// Récupération des données de connexions 
-if(isset($_POST['ok'])){
-    $mail = $_POST['mail'];
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(isset($_POST['username']) && isset($_POST['pwd'])){
     $username = $_POST['username'];
-    $pwd = $_POST['pwd'];
-
-    $requete = $bdd->prepare("INSERT INTO utilisateur VALUES (0, :mail, :pwd, :username)")
-    $requete->execute(
-        array(
-            "mail" => $mail,
-            "pwd" => $pwd,
-            "username" => $username,
-        )
-    );
-    $reponse = $requete->fetchall(PDO::FETCH_ASSOC);
-    var_dump($response);
+    $password = $_POST['pwd'];
+    }
+    if($username != "" && $password != ""){
+        //Connexion a la base
+        $req = $connection->query("SELECT * FROM utilisateur WHERE username = '$username' AND pwd = '$password'");
+        $rep = $req->fetch();
+        if($rep['id_utilisateur'] != false){
+            // c'est ok !   
+            if ($rep ['role'] == '1') {
+                header("Location: admin.php");
+                echo 'Connexion réussie';
+            } 
+            if ($rep ['role'] == "2") {
+                header("Location: comptable.html");
+                echo 'Connexion réussie';
+            } 
+            if ($rep ['role'] == '3') {
+                header("Location: user.html");
+                echo 'Connexion réussie';a
+            } 
+        }
+        else{
+            $error_msg = "Wrong username or password !";
+        }
+    }
 }
 ?>
