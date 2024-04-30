@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             } 
             if ($rep ['role'] == '3') {
                 header("Location: user.html");
-                echo 'Connexion réussie';a
+                echo 'Connexion réussie';
             } 
         }
         else{
