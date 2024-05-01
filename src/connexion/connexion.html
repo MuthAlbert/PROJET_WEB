@@ -3,47 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TORILLEC - Connexion</title>
-    <link rel="stylesheet" type="text/css" href="../../index.css">
-    <link rel="icon" href="../../images/logo.png" type="image/png">
+    <title>TORILLEC</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="icon" href="images/logo.png" type="image/png">
 </head>
 <body>
 
-    <ul class="navbar">
-        <li><a href="../../index.html">Home</a></li>
-        <li><a href="../apropos.html">A propos</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-        <li><a href="../services.html">Services</a></li>
-        <li><a href="../pourquoinous.html">Pourquoi nous?</a></li>
-        <li><a href="../equipe.html">Equipe</a></li>
-        <div class="dropdown">
-            <button class="dropbtn">Langues</button>
-                <div class="dropdown-content">
-                    <a class="#">Français</a>
-                    <a href="#">English</a>
-                </div>
-        </div>
-        <li style="float:right"><a class="active" href="connexion.html"><img src="../../Images/user.png" class="icon"> Connexion</a></li>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="page2.html">Page 2</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="page3.html">Page 3</a></li>
+        <li style="float:right"><a class="login active" href="login.html">Login</a></li>
     </ul>
 
-        <div class="card_connexion_creation">
-            <img src="../../images/logo_entreprise_t.png" style="width:220px" class="image_entreprise">
-            <div class="container">
-                <form action="/connexion.php">
-                    <center>
-                    <label for="username">Identifiant</label><br>
-                    <input type="text" id="username" name="username"><br>
-                    <label for="pwd">Mot de passe</label><br>
-                    <input type="password" id="pwd" name="pwd"><br><br>
-                    <input type="checkbox" id="souvenir" name="souvenir" value="text" class="souvenir">
-                    <label for="souvenir">Se souvenir de moi</label><br>
-                    </center>
-                    <button class="submit" type="submit" href="#">Connexion</button><br>
-                </form>
-                <center><a href="../nouveau_compte/nouveau_compte.html" class="creation">Créer un compte</a></center>
-            </div>
+    <div class="card">
+        <img src="images/avatar.jpg" alt="Avatar" style="width:100%">
+        <div class="container">
+            <form method="POST" action="login.php">
+                <label for="mail">Mail</label><br>
+                <input type="text" id="mail" name="mail" required><br>
+                <label for="pwd">Mot de passe</label><br>
+                <input type="password" id="pwd" name="pwd" required><br><br>
+                <input type="submit" value="Connexion" name="ok">
+            </form>
         </div>
-
+    </div>
     
   </body>
   </html>
