@@ -2,7 +2,7 @@
 session_start();
 //Paramètres de la connexion
 $host = '127.0.0.1';
-$db = 'utilisateur';
+$db = 'torillec';
 $user ='root';
 $pass='';
 $charset='utf8mb4';
