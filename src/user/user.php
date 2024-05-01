@@ -24,7 +24,7 @@ try {
 $id = $_SESSION['id'];
 
 //Echange avec la base de données
-$requete = "SELECT * FROM utilisateur";
+$requete = "SELECT * FROM factures";
 $result = $bddPDO -> query($requete);
 
 if(!result){
