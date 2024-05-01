@@ -12,8 +12,10 @@
   <script  src="admin_js.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
+
     <!--  On ajoute un utilisateur ici -->
-  <div class="cadre">
+  <div class="center">
+  <div class="cadre2">
   <h1 class="title "> Ajouter un utilisateur</h1><br>
   <form class="marge"action="admin.php" method="post">
     <h2 class="texte">Nom:</h2>
@@ -25,6 +27,8 @@
     <h2 class="texte">Mot de passe :</h2>
     <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-control"><br>
     
+
+
 <?php
   
       // Connexion à la base de données
@@ -36,7 +40,7 @@
       // Vérification s'il y a des résultats
       if ($requete) {
           echo '<div class="mb-3">';
-          echo '<label for="role" class="form-label">Choisir un rôle</label>';
+          echo '<label for="role" class="form-label texte"><div class="texte">Choisir un rôle:</div></label>';
           echo '<select id="role" name="role" class="form-control">';
           // Parcours des résultats et création des options de la liste déroulante
           foreach ($requete as $row) {
@@ -71,17 +75,18 @@
         }}    
     ?>
     <br>
-    <input type="submit" value="Ajouter">
-    <input type="reset" value="Effacer">
+    <input class="bouton_ajt" type="submit" value="Ajouter l'utilisateur">
+    <input class="bouton_initialiser" type="reset" value="Effacer">
     <br>
     </div>
   </form>
 
-<!---afficher les données de tout les users, supprimer les users--->
 
-<table class="table table-bordered cadre"> <!-- Affichage dans un tableau -->
-    <thead>
-    <tr >
+
+<!---afficher les données de tout les users, supprimer les users--->
+<table class="cadre" > <!-- Affichage dans un tableau -->
+    <thead >
+    <tr>
         <th scope="col">Id utilisateur</th>
         <th scope="col">Nom</th>
         <th scope="col">Prénom</th>
@@ -122,20 +127,22 @@
                     Actions
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="edit_user.php?id='.$row['id_user'].'">Modifier</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="confirmDelete('.$row['id_user'].')">Supprimer</a></li>
+                    <li><a class="dropdown-item bouton_modifier" href="edit_user.php?id='.$row['id_user'].'">Modifier</a></li>
+                    <li><a class="dropdown-item bouton_supprimer" href="#" onclick="confirmDelete('.$row['id_user'].')">Supprimer</a></li>
                 </ul>
             </div>
         </td>';
     echo "</tr>";
-}
-?>
 
+      }
+ 
+ ?>
+
+    </div>
 </div>
 </tbody>
 </body>
 </table>
-
-<!-- Pour update les données-->
-
+</div>
+    </div>
 </html>
