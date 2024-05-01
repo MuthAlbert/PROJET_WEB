@@ -26,20 +26,16 @@ $options = [
 if(isset($_POST['ok'])){
     $nom = ['nom'];
     $prenom = ['prenom'];
-    $mail = $_POST['mail'];
     $username = $_POST['username'];
-    $phone = $_POST['phone'];
     $pwd = $_POST['pwd'];
 
-    $requete = $bdd->prepare("INSERT INTO utilisateur VALUES (:nom, :prenom, :phone, :mail, :pwd, :username, 3)");
+    $requete = $bdd->prepare("INSERT INTO utilisateur VALUES (:nom, :prenom, :pwd, :username, 3)");
     $requete->execute(
         array(
             "nom" => $nom,
             "prenom" => $prenom,
-            "mail" => $mail,
             "pwd" => $pwd,
             "username" => $username,
-            "phone" => $phone,
         )
     );
     header("Location connexion.html");
