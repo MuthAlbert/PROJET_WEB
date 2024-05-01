@@ -31,21 +31,23 @@
         <div class="container">
             <form action="nouveau_compte.php">
                 <label for="username">Identifiant</label><br>
-                <input type="text" id="username" name="username"><br>
+                <input type="text" id="username" name="username" required><br>
                 <div class="name-fields">
                     <div class="form-group">
                         <label for="nom">Nom</label><br>
-                        <input type="text" id="nom" name="nom">
+                        <input type="text" id="nom" name="nom" required>
                     </div>
                     <div class="form-group">
                         <label for="prenom">Prénom</label><br>
-                        <input type="text" id="prenom" name="prenom">
+                        <input type="text" id="prenom" name="prenom" required>
                     </div>
                 </div>
                 <label for="email">E-mail</label><br>
-                <input type="email" id="email" name="email"><br>
+                <input type="email" id="email" name="email" required><br>
                 <label for="phone">Numéro de téléphone</label><br>
-                <input type="tel" id="phone" name="phone"><br>
+                <input type="tel" id="phone" name="phone" required><br>
+                <input type="password" id="pwd" name="pwd" required><br>
+                <br>
                 <button class="submit" type="submit" name="ok">Créer</button><br>
             </form>
         </div>
