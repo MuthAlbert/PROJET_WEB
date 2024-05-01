@@ -11,7 +11,6 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     border-radius: 7px;
 }
-
   
 li {
     float: left;
@@ -40,7 +39,7 @@ li a {
     font-size: 16px;
     border: none;
     cursor: pointer;
-  }
+}
   
 .dropdown {
     display: inline-block;
@@ -99,7 +98,7 @@ li a {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     width: 40%;
     margin: 80px auto;
-  }
+}
   
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -228,33 +227,32 @@ input {
     transition: box-shadow 0.3s;
     margin-bottom: 10px;
     margin: 50px auto;
-    }
+}
     
-    .btn_contact span {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
-      }
-      
-      .btn_contact span:after {
-        content: '\00bb';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -20px;
-        transition: 0.5s;
-      }
-      
-      .btn_contact span {
-        padding-right: 25px;
-      }
-      
-      .btn_contact:hover span:after {
-        opacity: 1;
-        right: 0;
-      }
+.btn_contact span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
 
+.btn_contact span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn_contact span {
+    padding-right: 25px;
+}
+
+.btn_contact:hover span:after {
+    opacity: 1;
+    right: 0;
+}
 
 .creation {
     display: inline-block;
@@ -299,8 +297,6 @@ input {
     flex-basis: 48%;
 }
 
-
-
 footer {
     background-color: #00000018;
     color: black;
@@ -312,7 +308,6 @@ footer {
     justify-content: space-between;
     align-items: center;
 }
-
 
 .infos-agence {
     text-align:left;
@@ -396,32 +391,18 @@ footer {
     width: 90px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .footer_section {
     position: relative;
     background-color: #ffffff;
     text-align: center;
-  }
-  
-  .footer_section p {
+}
+
+.footer_section p {
     color: #00204a;
     padding: 25px 0;
     margin: 0;
-  }
-  
-  .footer_section p a {
+}
+
+.footer_section p a {
     color: inherit;
-  }
+}

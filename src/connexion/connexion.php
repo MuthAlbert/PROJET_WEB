@@ -38,15 +38,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // c'est ok !   
             $_SESSION['id'] = $rep['id_user'];
             if ($rep ['role'] == '1') {
-                header("Location: admin.php");
+                header("Location: ../admin/admin.php");
                 echo 'Connexion réussie';
             } 
             if ($rep ['role'] == "2") {
-                header("Location: comptable.php");
+                header("Location: ../comptable/comptable.php");
                 echo 'Connexion réussie';
             } 
             if ($rep ['role'] == '3') {
-                header("Location: user.php");
+                header("Location: ../user/user.php");
                 echo 'Connexion réussie';
             } 
         }
