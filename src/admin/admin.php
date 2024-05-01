@@ -17,17 +17,15 @@
   <div class="cadre">
   <h1 class="title "> Ajouter un utilisateur</h1><br>
   <form class="marge"action="admin.php" method="post">
-    <h2 class="texte">Nom :</h2>
-    <input type="text" id="prenom" name="prenom" class="form-control"><br>
-    <h2 class="texte">Prénom:</h2>
+    <h2 class="texte">Nom:</h2>
     <input type="text" id="nom" name="nom" class="form-control"><br>
+    <h2 class="texte">Prénom:</h2>
+    <input type="text" id="prenom" name="prenom" class="form-control"><br>
     <h2 class="texte">Mail:</h2>
     <input  type="text" id="mail" name="mail" class="form-control"><br>
     <h2 class="texte">Mot de passe :</h2>
     <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-control"><br>
     
-
-
 <?php
   
       // Connexion à la base de données
@@ -80,8 +78,6 @@
     </div>
   </form>
 
-
-
 <!---afficher les données de tout les users, supprimer les users--->
 
 <table class="table table-bordered cadre"> <!-- Affichage dans un tableau -->
@@ -133,11 +129,8 @@
             </div>
         </td>';
     echo "</tr>";
-
-      }
- 
+}
  ?>
-
 
 </div>
 </tbody>
