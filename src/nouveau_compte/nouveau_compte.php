@@ -42,6 +42,7 @@ if(isset($_POST['ok'])){
             "phone" => $phone,
         )
     );
+    header("Location connexion.html");
     $reponse = $requete->fetchall(PDO::FETCH_ASSOC);
     var_dump($response);
 }
