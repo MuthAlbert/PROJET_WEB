@@ -1,91 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head >
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administration</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier utilisateur</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="style_admin.css">
 </head>
-
 <body>
-  <script  src="admin_js.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-<?php    
-$id=$_GET['id'];
-?>
-
-    <form class="marge"action="edit_user.php" method="post">
-    <h2 class="texte">Nom :</h2>
-    <input type="text" id="prenom" name="prenom" class="form-control"><br>
-    <h2 class="texte">Prénom:</h2>
-    <input type="mail" id="nom" name="nom" class="form-control"><br>
-    <h2 class="texte">Mail:</h2>
-    <input  type="text" id="mail" name="mail" class="form-control"><br>
-    <h2 class="texte">Mot de passe :</h2>
-    <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-control"><br>
+<div class="container">
+    <h1 class="text-center">Modifier utilisateur</h1>
     
-
-
 <?php
-    
+    if(isset($_GET['id']) 
+        && isset($_POST['prenom']) 
+        && isset($_POST['nom']) 
+        && isset($_POST['mail']) 
+        && isset($_POST['mot_de_passe']) 
+        && isset($_POST['role'])) {
+            $id = $_GET['id'];
+            $prenom = $_POST['prenom'];
+            $nom = $_POST['nom'];
+            $mail = $_POST['mail'];
+            $mot_de_passe = $_POST['mot_de_passe'];
+            $role = $_POST['role'];
 
-      // Connexion à la base de données
-      $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
+    $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
+    $stmt = $db->prepare("UPDATE utilisateur SET prenom = :prenom, nom = :nom, mail = :mail, mot_de_passe = :mot_de_passe, role = :role WHERE id_user = :id");
 
-      // Récupération des rôles depuis la base de données
-      $requete = $db->query("SELECT * FROM roles")->fetchAll();
+    $stmt->bindParam(":prenom", $prenom);
+    $stmt->bindParam(":nom", $nom);
+    $stmt->bindParam(":mail", $mail);
+    $stmt->bindParam(":mot_de_passe", $mot_de_passe);
+    $stmt->bindParam(":role", $role);
+    $stmt->bindParam(":id", $id);
 
-      // Vérification s'il y a des résultats
-      if ($requete) {
-          echo '<div class="mb-3">';
-          echo '<label for="role" class="form-label">Choisir un rôle</label>';
-          echo '<select id="role" name="role" class="form-control">';
-          // Parcours des résultats et création des options de la liste déroulante
-          foreach ($requete as $row) {
-              echo '<option value="' . $row['id_role'] . '">' . $row['role_nom'] . '</option>';
-          }
-          echo '</select>';
-          echo '</div>';
-      }
+    if($stmt->execute()) {
+        echo "Les informations de l'utilisateur ont été mises à jour avec succès.";
+    } else {
+        echo "Une erreur s'est produite lors de la mise à jour des informations de l'utilisateur.";
+    }
+} else {
+    echo "Veuillez remplir tous les champs du formulaire.";
+}
+?>
+    <?php
+    if(isset($_GET['id'])) {
+        $id = $_GET['id'];
 
-      if ($_SERVER["REQUEST_METHOD"] === "POST"){
+        $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
+        $stmt = $db->prepare("SELECT * FROM utilisateur WHERE id_user = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (isset($_POST['nom']) 
-            && isset($_POST['prenom']) 
-            && isset($_POST['mail']) 
-            && isset($_POST['mot_de_passe']) 
-            && isset($_POST['role'])) {
+        if($user) {
+            ?>
+            <!-- Formulaire pour modifier l'utilisateur -->
+            <form action="edit_user.php?id=<?php echo $id; ?>" method="post">
+                <div class="mb-3">
+                    <label for="prenom" class="form-label">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" class="form-control" value="<?php echo $user['prenom']; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom :</label>
+                    <input type="text" id="nom" name="nom" class="form-control" value="<?php echo $user['nom']; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="mail" class="form-label">Mail :</label>
+                    <input type="email" id="mail" name="mail" class="form-control" value="<?php echo $user['mail']; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="mot_de_passe" class="form-label">Mot de passe :</label>
+                    <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-control" value="<?php echo $user['mot_de_passe']; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="role" class="form-label">Rôle :</label>
+                    <select id="role" name="role" class="form-control">
 
-              $nom = $_POST['nom'];
-              $prenom = $_POST['prenom'];
-              $mail = $_POST['mail']; 
-              $mot_de_passe = $_POST['mot_de_passe'];
-              $role = $_POST['role']; 
-              
-              $stmt = $db->prepare("UPDATE utilisateur SET nom = :nom, prenom = :prenom, role = :role, mail = :mail, mot_de_passe = :mot_de_passe WHERE id_user = :id");
-              $stmt->bindParam(":prenom",$prenom);
-              $stmt->bindParam(":nom",$nom);
-              $stmt->bindParam(":role",$role);
-              $stmt->bindParam(":mot_de_passe",$mot_de_passe);
-              $stmt->bindParam(":mail",$mail);
-              $stmt->bindParam(":id",$id);
-              $stmt->execute();
-              exit();
-        }}    
+                    <?php
+                    // Récupère les rôles depuis la base de données
+                    $requete = $db->query("SELECT * FROM roles")->fetchAll();
+                    foreach ($requete as $row) {
+                        $selected = ($user['role'] == $row['id_role']) ? 'selected' : '';
+                        echo '<option value="' . $row['id_role'] . '" ' . $selected . '>' . $row['role_nom'] . '</option>';
+                    }
+                    ?>
+
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+                <button type="" class="btn btn-primary"> <a href="admin.php">Retour</a></button>
+            </form>
+            <?php
+        } else {
+            echo "<p>Utilisateur non trouvé.</p>";
+        }
+    } else {
+        echo "<p>Identifiant de l'utilisateur non spécifié.</p>";
+    }
     ?>
-    <br>
-    <input type="submit" value="Modifier">
-    <br>
-    </div>
-
-
-
-</form>
-
-
-
+</div>
 
 </body>
 </html>
