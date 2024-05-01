@@ -64,28 +64,42 @@ session_start();
         </table>
     </div>
     <?php
+
     //Connexion db
     $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
     $data = $db->query("SELECT * FROM utilisateur");
+
     //Récupération des information de l'utilisateur
     $id = $_SESSION['id'];
 
     //Echange avec la base de données
     $requete = "SELECT * FROM utilisateur";
-    $result = $bddPDO -> query($requete);
+    $result = $db -> query($requete);
 
-    if (!result){
+    if (!$result){
         echo "La récupération des données a échoué !";
+    }  else {
+        $utilisateurs = $result->fetchAll(PDO::FETCH_ASSOC); 
+        $idExiste = false;
+        foreach ($utilisateurs as $utilisateur) {
+            if ($id === $utilisateur['id_user']) {
+                $idExiste = true;
+                break;
+            }
+        }
     }
-    if ($id === $result['id']) {
+
+    if ($idExiste === true) {
+
         while($ligne = $result->fetch(PDO::FETCH_NUM)) {
             echo"<tr>";
             foreach ($ligne as $valeur) {
                 echo "<td>$valeur</td>";
             }
             echo "</tr>";
-        };
+        };    
     };
+
     ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>

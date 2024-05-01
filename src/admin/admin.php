@@ -35,7 +35,7 @@
       $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
 
       // Récupération des rôles depuis la base de données
-      $requete = $db->query("SELECT * FROM roles")->fetchAll();
+      $requete = $db->query("SELECT role FROM utilisateur")->fetchAll();
 
       // Vérification s'il y a des résultats
       if ($requete) {

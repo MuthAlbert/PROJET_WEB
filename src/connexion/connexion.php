@@ -1,5 +1,6 @@
 <?php 
 session_start();
+
 //Paramètres de la connexion
 $host = '127.0.0.1';
 $db = 'torillec';
@@ -23,12 +24,15 @@ $options = [
     die('Erreur de connexion : ' . $e->getMessage());
    }
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+if($_SERVER["REQUEST_METHOD"] = "POST"){
+
     if(isset($_POST['mail']) && isset($_POST['pwd'])){
     $mail = $_POST['mail'];
     $mot_de_passe = $_POST['pwd'];
     $_SESSION['mail'] = $mail;
     $_SESSION['pwd'] = $mot_de_passe;
+
     }
     if($mail != "" && $mot_de_passe != ""){
         //Connexion a la base
