@@ -3,7 +3,18 @@ function submitTicket() {
     const date = document.getElementById("dateInput").value;
     const prix = document.getElementById("prixInput").value;
     const etat = "En attente de traitement";
-    
+    var xhr = new XMLHttpRequest();
+    var url = "commerciale.php";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Traitement de la réponse du script PHP si nécessaire
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send("type=" + type + "date=" + date + "prix=" + prix + "etat=" + etat); // Envoyer les données au script PHP
+
     if (type && date && prix) {
         const newRow = document.getElementById("ticketBody").insertRow();
         
@@ -42,30 +53,24 @@ function displayTicket(row) {
     const btnModifier = document.getElementById("btnModifier");
     btnModifier.textContent = "Modifier";
     btnModifier.onclick = function() {
-        // deleteCells(row, [2, 3, 4]);
-        // modification(id);
+        row.remove();
+        modification(row);
     };
     togglePopup();
 }
 
-// function modification(id) {
-//     const ligneTicket = document.getElementById(id);
-//     if (ligneTicket) {
-//         const cellules = ligneTicket.cells;
-//         if (cellules.length >= 5) {
-//             const nouveauType = document.getElementById("types").value;
-//             const nouvelleDate = document.getElementById("dateInput").value;
-//             const nouveauPrix = document.getElementById("prixInput").value;
+function modification(row) {
+    if (row) {
+        const cellules = row.cells;
+        if (cellules.length >= 5) {
+            const nouveauType = document.getElementById("types").value;
+            const nouvelleDate = document.getElementById("dateInput").value;
+            const nouveauPrix = document.getElementById("prixInput").value;
 
-//             cellules[2].textContent = nouveauType;
-//             cellules[3].textContent = nouvelleDate;
-//             cellules[4].textContent = nouveauPrix;
-//         }
-//     }
-// }
-
-// function deleteCells(row, indexes) {
-//     indexes.forEach(index => {
-//         row.deleteCell(index);
-//     });
-// }
+            cellules[2].textContent = nouveauType;
+            cellules[3].textContent = nouvelleDate;
+            cellules[4].textContent = nouveauPrix;
+            submitTicket();
+        }
+    }
+}

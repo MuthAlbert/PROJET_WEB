@@ -1,7 +1,7 @@
-<?php
+<?php   
 //Paramètres de la connexion
 $host = '127.0.0.1';
-$db = 'utilisateur';
+$db = 'torillec';
 $user ='root';
 $pass='';
 $charset='utf8mb4';
@@ -24,19 +24,24 @@ $options = [
 
 // Récupération des données de connexions 
 if(isset($_POST['ok'])){
-    $mail = $_POST['mail'];
+    $nom = ['nom'];
+    $prenom = ['prenom'];
     $username = $_POST['username'];
     $pwd = $_POST['pwd'];
 
-    $requete = $bdd->prepare("INSERT INTO utilisateur VALUES (0, :mail, :pwd, :username)")
+    $requete = $bdd->prepare("INSERT INTO utilisateur VALUES (:nom, :prenom, :pwd, :username, 3)");
     $requete->execute(
         array(
-            "mail" => $mail,
+            "nom" => $nom,
+            "prenom" => $prenom,
             "pwd" => $pwd,
             "username" => $username,
         )
     );
+    header("Location connexion.html");
     $reponse = $requete->fetchall(PDO::FETCH_ASSOC);
     var_dump($response);
 }
-?>
+
+echo('Création de compte réussi ! ')
+?>  
