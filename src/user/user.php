@@ -1,9 +1,20 @@
 <?php
 session_start();
-// if (!$_SESSION(['id'])){
-    // header("Location : ../connexion/connexion.html");
-// };
+
+function logout()
+{
+    $_SESSION = array(); //destroy all of the session variables
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie (session_id(), "", time() - 3600);
+        $params["path"]; $params["domain"];
+        $params["secure"]; $params["httponly"];
+        };
+    session_destroy();
+    session_write_close(); header("Location : ../index.html");
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +32,7 @@ session_start();
     <div class="container">
         <ul>
             <li><a class="active" href="user.php">TORILLEC COMPANY</a></li>
-            <li style="float:right"><a class="login" href="../../deconnexion.php">Log out</a></li>
+            <li style="float:right"><a onclick="logout()" class="login" href="../connexion/connexion.html">Log out</a></li>
         </ul>
         <div class="centered-block">
             <button onclick="togglePopup()">Ajouter un ticket</button>
@@ -66,7 +77,7 @@ session_start();
             </tbody>
         </table>
     </div>
-    <?php
+    <!-- <?php
 
     //Connexion db
     $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
@@ -103,7 +114,7 @@ session_start();
         };    
     };
 
-    ?>
+    ?> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
     <script src="user.js"></script>
