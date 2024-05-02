@@ -1,8 +1,8 @@
 <?php
 session_start();
-if (!$_SESSION(['id'])){
-    header("Location : ../connexion/connexion.html");
-};
+// if (!$_SESSION(['id'])){
+    // header("Location : ../connexion/connexion.html");
+// };
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@ if (!$_SESSION(['id'])){
     <div class="container">
         <ul>
             <li><a class="active" href="user.php">TORILLEC COMPANY</a></li>
-            <li style="float:right"><a class="login" href="deconnexion.php">Log out</a></li>
+            <li style="float:right"><a class="login" href="../../deconnexion.php">Log out</a></li>
         </ul>
         <div class="centered-block">
             <button onclick="togglePopup()">Ajouter un ticket</button>

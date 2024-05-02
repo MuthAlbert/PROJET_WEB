@@ -31,9 +31,9 @@
 
 <?php
       session_start();
-        if (!$_SESSION(['id']){
+        if (!$_SESSION(['id'])){
             header("Location : ../connexion/connexion.html");
-            };
+        };
       // Connexion à la base de données
       $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
 
