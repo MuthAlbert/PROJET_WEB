@@ -1,7 +1,7 @@
 function submitTicket() {
     const type = document.getElementById("types").value;
     const date = document.getElementById("dateInput").value;
-    const prix = document.getElementById("prixInput").value;
+    const somme = document.getElementById("prixInput").value;
     const etat = "En attente de traitement";
     var xhr = new XMLHttpRequest();
     var url = "ajout_ticket.php";
@@ -15,14 +15,14 @@ function submitTicket() {
             };
             xhr.send("type=" + type + "&date=" + date + "&somme=" + somme + "&etat=" + etat); // Envoyer les données au script PHP
 
-    if (type && date && prix) {
+    if (type && date && somme) {
         const newRow = document.getElementById("ticketBody").insertRow();
         
         newRow.insertCell(0).textContent = "";
         newRow.insertCell(1).textContent = etat;
         newRow.insertCell(2).textContent = type;
         newRow.insertCell(3).textContent = date;
-        newRow.insertCell(4).textContent = prix;
+        newRow.insertCell(4).textContent = somme;
 
         const cellModifier = newRow.insertCell(5);
         const btnModifier = document.createElement("button");
