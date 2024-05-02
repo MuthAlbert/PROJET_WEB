@@ -18,7 +18,7 @@ session_start();
     <div class="container">
         <ul>
             <li><a class="active" href="user.php">TORILLEC COMPANY</a></li>
-            <li style="float:right"><a class="login" href="../connexion/connexion.html">Log out</a></li>
+            <li style="float:right"><a class="login" href="deconnexion.php"><button>Log out</button></a></li>
         </ul>
         <div class="centered-block">
             <button onclick="togglePopup()">Ajouter un ticket</button>
