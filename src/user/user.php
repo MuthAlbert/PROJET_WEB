@@ -105,7 +105,7 @@ session_start();
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
     <script src="user.js"></script>
 
-    <php
+    <?php
 
         // Récupération des données ajouter à ajouter dans la bdd
         if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -115,5 +115,8 @@ session_start();
         $somme = $_POST['somme'];
         $etat = $_POST['etat'];
         }
+            //Accès a la base
+            $req = $connexion->query("INSERT INTO facture VALUES (
+        ?>
 </body>
 </html>
