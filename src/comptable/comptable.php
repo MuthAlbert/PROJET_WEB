@@ -1,8 +1,8 @@
 <?php
 session_start();
-if (!$_SESSION(['id']){
-    header("Location : ../connexion/connexion.html");
-};
+//if (!$_SESSION(['id'])){
+//    header("Location : ../connexion/connexion.html");
+//};
 ?>
 <!DOCTYPE html>
 <html lang="en">
