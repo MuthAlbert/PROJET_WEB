@@ -4,7 +4,7 @@ function submitTicket() {
     const prix = document.getElementById("prixInput").value;
     const etat = "En attente de traitement";
     var xhr = new XMLHttpRequest();
-    var url = "commerciale.php";
+    var url = "user.php";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
