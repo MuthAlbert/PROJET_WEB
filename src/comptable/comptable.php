@@ -40,8 +40,8 @@ session_start();
 
     
         // while ($row = $data->fetch(PDO::FETCH_NUM)){
-          echo "<tr>";
             foreach ($data as $data_facture){
+            echo "<tr>";
             echo "<td>".$data_facture["id_facture"]."</td>";
             echo "<td>".$data_facture["etat"]."</td>";
             echo "<td>".$data_facture["date"]."</td>";
