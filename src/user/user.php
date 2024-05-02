@@ -1,20 +1,6 @@
 <?php
 session_start();
-
-function logout()
-{
-    $_SESSION = array(); //destroy all of the session variables
-    if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie (session_id(), "", time() - 3600);
-        $params["path"]; $params["domain"];
-        $params["secure"]; $params["httponly"];
-        };
-    session_destroy();
-    session_write_close(); header("Location : ../index.html");
-    }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +18,7 @@ function logout()
     <div class="container">
         <ul>
             <li><a class="active" href="user.php">TORILLEC COMPANY</a></li>
-            <li style="float:right"><a onclick="logout()" class="login" href="../connexion/connexion.html">Log out</a></li>
+            <li style="float:right"><a class="login" href="../connexion/connexion.html">Log out</a></li>
         </ul>
         <div class="centered-block">
             <button onclick="togglePopup()">Ajouter un ticket</button>
@@ -68,53 +54,33 @@ function logout()
                 <th scope="col">ID</th>
                 <th scope="col">ETAT</th>
                 <th scope="col">TYPE</th>
-                <th scope="col">DATE</th>
+                <th scopecol="">DATE</th>
                 <th scope="col">PRIX</th>
                 <th scope="col">MODIFICATION</th>
               </tr>
             </thead>
             <tbody id="ticketBody">
-            </tbody>
-        </table>
+            
     </div>
-    <!-- <?php
 
-    //Connexion db
+    <?php
+
     $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
-    $data = $db->query("SELECT * FROM utilisateur");
-
-    //Récupération des information de l'utilisateur
-    $id = $_SESSION['id'];
-
-    //Echange avec la base de données
-    $requete = "SELECT * FROM utilisateur";
-    $result = $db -> query($requete);
-
-    if (!$result){
-        echo "La récupération des données a échoué !";
-    }  else {
-        $utilisateurs = $result->fetchAll(PDO::FETCH_ASSOC); 
-        $idExiste = false;
-        foreach ($utilisateurs as $utilisateur) {
-            if ($id === $utilisateur['id_user']) {
-                $idExiste = true;
-                break;
-            }
+    $data = $db->query("SELECT * FROM factures");
+    // if($_SESSION['id'] == $data->fetch()['id_user']){
+    foreach ($data as $data_facture){
+        echo "<tr>";
+        echo "<td>".$data_facture["id_facture"]."</td>";
+        echo "<td>".$data_facture["etat"]."</td>";
+        echo "<td>".$data_facture["date"]."</td>";
+        echo "<td>".$data_facture["type"]."</td>";
+        echo "<td>".$data_facture["somme"]."</td>"; 
         }
-    }
-
-    if ($idExiste === true) {
-
-        while($ligne = $result->fetch(PDO::FETCH_NUM)) {
-            echo"<tr>";
-            foreach ($ligne as $valeur) {
-                echo "<td>$valeur</td>";
-            }
-            echo "</tr>";
-        };    
-    };
-
-    ?> -->
+    echo "</tr>";  
+    // }
+    ?>
+    </tbody>
+    </table>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
     <script src="user.js"></script>
