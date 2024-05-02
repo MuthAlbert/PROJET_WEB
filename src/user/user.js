@@ -13,7 +13,7 @@ function submitTicket() {
                     console.log(xhr.responseText);
                 }
             };
-            xhr.send("type=" + type + "date=" + date + "prix=" + prix + "etat=" + etat); // Envoyer les données au script PHP
+            xhr.send("type=" + type + "&date=" + date + "&somme=" + somme + "&etat=" + etat); // Envoyer les données au script PHP
 
     if (type && date && prix) {
         const newRow = document.getElementById("ticketBody").insertRow();
