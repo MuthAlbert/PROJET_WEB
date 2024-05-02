@@ -1,6 +1,7 @@
 <?php
         //Connexion à la base
-        
+        $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
+
         // Récupération des données ajouter à ajouter dans la bdd
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(isset($_POST['type']) && isset($_POST['etat'] && isset($_POST['somme'] && isset($_POST['date'])){
