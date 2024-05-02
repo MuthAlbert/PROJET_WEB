@@ -38,6 +38,26 @@ session_start();
        $data = $db->query("SELECT * FROM factures");
 
 
+       
+    // Vérifier si le formulaire a été soumis
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Vérifier quel bouton a été cliqué
+        if (isset($_POST["valider"])) {
+            // Si le bouton "Valider" a été cliqué, mettre à jour l'état à 1 dans la table Factures
+            $stmt = $db->prepare("UPDATE Factures SET etat = 1 WHERE id_facture = :id");
+            $stmt->bindParam(":id", $_POST["id_facture"]);
+            $stmt->execute();
+            echo "La facture a été validée avec succès.";
+        }
+        elseif (isset($_POST["refuser"])) {
+            // Si le bouton "Refuser" a été cliqué, mettre à jour l'état à 0 dans la table Factures
+            $stmt = $db->prepare("UPDATE Factures SET etat = 0 WHERE id_facture = :id");
+            $stmt->bindParam(":id", $_POST["id_facture"]);
+            $stmt->execute();
+            echo "La facture a été refusée.";
+    }
+}
+
     
         // while ($row = $data->fetch(PDO::FETCH_NUM)){
             foreach ($data as $data_facture){
@@ -53,7 +73,9 @@ session_start();
                         Actions
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="comptable.html">Modifier</a></li>
+                        <li><a class="dropdown-item" id="valider">Valider</a></li>
+                        <li><a class="dropdown-item" id="refuser">Refuser</a></li>
+                        
                     </ul>
                 </div>
             </td>';
@@ -74,13 +96,13 @@ session_start();
 
     function confirmModify(etat){
         if (confirm("Voulez vous changer l'état de cette facture?")) {
-            window.location.href = "admin.html?id=" + etat + "&action=edit";
+            window.location.href = "admin.php?id=" + etat + "&action=edit";
         }
     }
 
 </script>
 
-<!-- <?php
+ <?php
 // Vérifier si une requête de mise à jour a été soumise
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_user'])) {
     // Récupérer les valeurs des champs du formulaire
@@ -109,9 +131,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_user'])) {
     $stmt->execute();
 
     // Rediriger l'utilisateur vers une autre page après la mise à jour
-    header("Location: admin.html");
+    header("Location: admin.php");
     exit(); // Assurez-vous d'arrêter l'exécution du script après la redirection
 }
-?> -->
+?>
 
 </html>
