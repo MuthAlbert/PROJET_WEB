@@ -23,6 +23,7 @@ function submitTicket() {
         newRow.insertCell(2).textContent = type;
         newRow.insertCell(3).textContent = date;
         newRow.insertCell(4).textContent = somme;
+
         const cellModifier = newRow.insertCell(5);
         const btnModifier = document.createElement("button");
         btnModifier.textContent = "Modifier";
@@ -43,13 +44,14 @@ function togglePopup() {
 
 function displayTicket(row) {
     const cellules = row.cells;
-    // const id = cellules[0].textContent;
+    const id = cellules[0].textContent;
 
     document.getElementById("types").value = cellules[2].textContent;
     document.getElementById("dateInput").value = cellules[3].textContent;
     document.getElementById("prixInput").value = cellules[4].textContent;
 
     const btnModifier = document.getElementById("btnModifier");
+    btnModifier.textContent = "Modifier";
     btnModifier.onclick = function() {
         row.remove();
         modification(row);
