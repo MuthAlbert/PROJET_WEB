@@ -26,7 +26,6 @@ function submitTicket() {
 
         const cellModifier = newRow.insertCell(5);
         const btnModifier = document.createElement("button");
-        btnModifier.textContent = "Modifier";
         btnModifier.onclick = function() {
             displayTicket(newRow);
         };
