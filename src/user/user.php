@@ -104,5 +104,16 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
     <script src="user.js"></script>
+
+    <php
+
+        // Récupération des données ajouter à ajouter dans la bdd
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            if(isset($_POST['type']) && isset($_POST['etat'] && isset($_POST['somme'] && isset($_POST['date'])){
+        $date = $_POST['date'];
+        $type = $_POST['type'];
+        $somme = $_POST['somme'];
+        $etat = $_POST['etat'];
+        }
 </body>
 </html>
