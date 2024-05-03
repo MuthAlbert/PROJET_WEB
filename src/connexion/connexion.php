@@ -1,5 +1,9 @@
 <?php 
 session_start();
+$_SESSION['logUser'] = false;
+$_SESSION['logAdmin'] = false;
+$_SESSION['logComptable'] = false;
+
 //Paramètres de la connexion
 $host = '127.0.0.1';
 $db = 'torillec';
@@ -38,15 +42,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // c'est ok !   
             $_SESSION['id'] == $rep['id_user'];
             if ($rep ['role'] == '1') {
+                $_SESSION['logAdmin'] = true;
                 header("Location: ../admin/admin.php");
-                echo 'Connexion réussie';
+                echo 'Connexion réussie'; 
             } 
             if ($rep ['role'] == "2") {
+                $_SESSION["logComptable"] = true;
                 header("Location: ../comptable/comptable.php");
                 echo 'Connexion réussie';
             } 
             if ($rep ['role'] == '3') {
-                header("Location: user.php");
+                $_SESSION["logUser"] = true;
+                header("Location: ../user/user.php");
                 echo 'Connexion réussie';
             } 
         }
@@ -57,4 +64,3 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 }
-?>

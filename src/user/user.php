@@ -1,6 +1,11 @@
 <?php
 session_start();
-?>
+if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
+  echo "Acces Refusé";
+  header("Location: ../../deconnexion.php");
+  exit();
+}
+?>s
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +23,7 @@ session_start();
     <div class="container">
         <ul>
             <li><a class="active" href="user.php">TORILLEC COMPANY</a></li>
-            <li style="float:right"><a class="login" href="deconnexion.php"><button>Log out</button></a></li>
+            <li style="float:right"><a class="login" href="../../deconnexion.php"><button>Log out</button></a></li>
         </ul>
         <div class="centered-block">
             <button onclick="togglePopup()">Ajouter un ticket</button>
