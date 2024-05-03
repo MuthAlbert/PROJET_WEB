@@ -51,7 +51,6 @@ function displayTicket(row) {
     document.getElementById("prixInput").value = cellules[4].textContent;
 
     const btnModifier = document.getElementById("btnModifier");
-    btnModifier.textContent = "Modifier";
     btnModifier.onclick = function() {
         row.remove();
         modification(row);
