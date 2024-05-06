@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
+  echo "Acces Refusé";
+  header("Location: ../../deconnexion.php");
+  exit();
+}
+?>
 <!doctype html>
 <html lang="en">
 <head >
@@ -7,7 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="style_admin.css">
 </head>
-
+    <li style="float:right"><a class="login" href="../../deconnexion.php"><button>Log out</button></a></li>
 <body>
   <script  src="admin_js.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -30,7 +38,6 @@
 
 
 <?php
-  
       // Connexion à la base de données
       $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
 

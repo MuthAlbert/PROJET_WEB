@@ -32,14 +32,14 @@
         <div class="card_connexion">
             <img src="../../images/logo_entreprise_t.png" style="width:220px" class="image_entreprise">
             <div class="container">
-                <form action="/connexion.php">
+                <form method="post" action="/connexion.php">
                     <center>
-                    <label for="username">Identifiant</label><br>
-                    <input type="text" id="username" name="username"><br>
+                    <label for="mail">Mail</label><br>
+                    <input type="text" id="mail" name="mail" required><br>
                     <label for="pwd">Mot de passe</label><br>
-                    <input type="password" id="pwd" name="pwd"><br><br>
+                    <input type="password" id="pwd" name="pwd" required><br><br>
                     </center>
-                    <button class="submit" type="submit">Connexion</button><br>
+                    <button class="submit" type="submit" name="ok" value="Connexion">Connexion</button><br>
                 </form>
             </div>
         </div>

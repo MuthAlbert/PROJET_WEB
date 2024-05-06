@@ -1,5 +1,9 @@
 <?php 
 session_start();
+$_SESSION['logUser'] = false;
+$_SESSION['logAdmin'] = false;
+$_SESSION['logComptable'] = false;
+
 //Paramètres de la connexion
 $host = '127.0.0.1';
 $db = 'torillec';
@@ -24,35 +28,39 @@ $options = [
    }
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(isset($_POST['username']) && isset($_POST['pwd'])){
-    $username = $_POST['username'];
-    $password = $_POST['pwd'];
-    $_SESSION['username'] = $username;
-    $_SESSION['password'] = $password;
+    if(isset($_POST['mail']) && isset($_POST['pwd'])){
+    $mail = $_POST['mail'];
+    $mot_de_passe = $_POST['pwd'];
+    $_SESSION['mail'] = $mail;
+    $_SESSION['pwd'] = $mot_de_passe;
     }
-    if($username != "" && $password != ""){
+    if($mail != "" && $mot_de_passe != ""){
         //Connexion a la base
-        $req = $connection->query("SELECT * FROM utilisateur WHERE username = '$username' AND pwd = '$password'");
+        $req = $connection->query("SELECT * FROM utilisateur WHERE mail = '$mail' AND mot_de_passe  = '$mot_de_passe'");
         $rep = $req->fetch();
-        $_SESSION['id'] = $rep ['id'];
-        if($rep['id_utilisateur'] != false){
+        if($rep !== false){
             // c'est ok !   
+            $_SESSION['id'] == $rep['id_user'];
             if ($rep ['role'] == '1') {
-                header("Location: admin.php");
-                echo 'Connexion réussie';
+                $_SESSION['logAdmin'] = true;
+                header("Location: ../admin/admin.php");
+                echo 'Connexion réussie'; 
             } 
             if ($rep ['role'] == "2") {
-                header("Location: comptable.html");
+                $_SESSION["logComptable"] = true;
+                header("Location: ../comptable/comptable.php");
                 echo 'Connexion réussie';
             } 
             if ($rep ['role'] == '3') {
-                header("Location: user.html");
+                $_SESSION["logUser"] = true;
+                header("Location: ../user/user.php");
                 echo 'Connexion réussie';
             } 
         }
         else{
-            $error_msg = "Wrong username or password !";
+            //C'est pas ok !
+            echo "Wrong username or password !";
+            header("Location ../connexion/connexion.html");
         }
     }
 }
-?>

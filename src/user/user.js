@@ -1,10 +1,10 @@
 function submitTicket() {
     const type = document.getElementById("types").value;
     const date = document.getElementById("dateInput").value;
-    const prix = document.getElementById("prixInput").value;
+    const somme = document.getElementById("prixInput").value;
     const etat = "En attente de traitement";
     var xhr = new XMLHttpRequest();
-    var url = "commerciale.php";
+    var url = "ajout_ticket.php";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
@@ -13,16 +13,16 @@ function submitTicket() {
                     console.log(xhr.responseText);
                 }
             };
-            xhr.send("type=" + type + "date=" + date + "prix=" + prix + "etat=" + etat); // Envoyer les données au script PHP
+            xhr.send("type=" + type + "&date=" + date + "&somme=" + somme + "&etat=" + etat); // Envoyer les données au script PHP
 
-    if (type && date && prix) {
+    if (type && date && somme) {
         const newRow = document.getElementById("ticketBody").insertRow();
         
         newRow.insertCell(0).textContent = "";
         newRow.insertCell(1).textContent = etat;
         newRow.insertCell(2).textContent = type;
         newRow.insertCell(3).textContent = date;
-        newRow.insertCell(4).textContent = prix;
+        newRow.insertCell(4).textContent = somme;
 
         const cellModifier = newRow.insertCell(5);
         const btnModifier = document.createElement("button");
@@ -51,7 +51,6 @@ function displayTicket(row) {
     document.getElementById("prixInput").value = cellules[4].textContent;
 
     const btnModifier = document.getElementById("btnModifier");
-    btnModifier.textContent = "Modifier";
     btnModifier.onclick = function() {
         row.remove();
         modification(row);
