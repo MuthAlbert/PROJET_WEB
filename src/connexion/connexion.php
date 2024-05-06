@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $rep = $req->fetch();
         if($rep !== false){
             // c'est ok !   
-            $_SESSION['id'] == $rep['id_user'];
+            $_SESSION['id'] = $rep['id_user'];
             if ($rep ['role'] == '1') {
                 $_SESSION['logAdmin'] = true;
                 header("Location: ../admin/admin.php");
