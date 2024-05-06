@@ -5,7 +5,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
   header("Location: ../../deconnexion.php");
   exit();
 }
-?>s
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +21,18 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
 
 <body style="background-color: #335686;">
     <div class="container">
-        <ul>
-            <li><a class="active" href="user.php">TORILLEC COMPANY</a></li>
-            <li style="float:right"><a class="login" href="../../deconnexion.php"><button>Log out</button></a></li>
-        </ul>
+    <!-- Navbar -->
+    <nav class="navbar">
+       <a href="index.html" class="logo">TORILLEC</a> 
+        <div class="nav-li">
+            <ul>
+                <li style="float:right"><a class="login" href="../../deconnexion.php"><img src="../../Images/user.png" class="user">Log out</a></li>
+            </ul>
+        </div>
+        <img src="../../Images/menu.png" alt="menu" class="menu">
+    </nav>
+    <!-- Fin navbar -->
+
         <div class="centered-block">
             <button onclick="togglePopup()">Ajouter un ticket</button>
         </div>
