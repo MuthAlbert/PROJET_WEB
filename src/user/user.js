@@ -40,6 +40,15 @@ function submitTicket() {
 function togglePopup() {
     let popup = document.querySelector("#popup-overlay");
     popup.classList.toggle("open");
+    if (!popup.classList.contains("open")) {
+        reset_popup();
+    }
+}
+
+function reset_popup() {
+    document.getElementById("types").value = "";
+    document.getElementById("dateInput").value = "";
+    document.getElementById("prixInput").value = "";
 }
 
 function displayTicket(row) {
@@ -73,3 +82,10 @@ function modification(row) {
         }
     }
 }
+
+document.addEventListener("click", function(event) {
+    if (event.target.classList.contains("btn-modifier")) {
+        let row = event.target.closest("tr");
+        displayTicket(row);
+    }
+});
