@@ -8,12 +8,12 @@ function submitTicket() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Traitement de la réponse du script PHP si nécessaire
-                    console.log(xhr.responseText);
-                }
-            };
-            xhr.send("type=" + type + "&date=" + date + "&somme=" + somme + "&etat=" + etat); // Envoyer les données au script PHP
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Traitement de la réponse du script PHP si nécessaire
+            console.log(xhr.responseText);
+        }
+    };
+    xhr.send("type=" + type + "&date=" + date + "&somme=" + somme + "&etat=" + etat); // Envoyer les données au script PHP
 
     if (type && date && somme) {
         const newRow = document.getElementById("ticketBody").insertRow();

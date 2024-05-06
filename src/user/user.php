@@ -17,20 +17,22 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
     <link rel="stylesheet" type="text/css" href="user.css">
     <link rel="icon" href="../../Images/logo.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"></head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body">
     <div class="container">
         <!-- Navbar -->
-        <nav class="navbar">
-           <a href="index.html" class="logo">TORILLEC</a> 
-            <div class="nav-li">
-                <ul>
-                    <li style="float:right"><a class="login" href="../../deconnexion.php"><img src="../../Images/user.png" class="user">Log out</a></li>
+        <nav class="navbar navbar-expand-lg">
+           <a href="index.html" class="navbar-brand">TORILLEC</a> 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../../deconnexion.php"><img src="../../Images/user.png" class="user"> Log out</a></li>
                 </ul>
             </div>
-            <img src="../../Images/menu.png" alt="menu" class="menu">
         </nav>
         <!-- Fin navbar -->
 
@@ -82,32 +84,29 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     <th scope="col">ID</th>
                     <th scope="col">ETAT</th>
                     <th scope="col">TYPE</th>
-                    <th scopecol="">DATE</th>
+                    <th scope="col">DATE</th>
                     <th scope="col">PRIX</th>
                     <th scope="col">MODIFICATION</th>
                 </tr>
             </thead>
             <tbody id="ticketBody">
+                <?php
+                $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
+                $data = $db->query("SELECT * FROM factures");
+                foreach ($data as $data_facture){
+                    echo "<tr>";
+                    echo "<td>".$data_facture["id_facture"]."</td>";
+                    echo "<td>".$data_facture["etat"]."</td>";
+                    echo "<td>".$data_facture["date"]."</td>";
+                    echo "<td>".$data_facture["type"]."</td>";
+                    echo "<td>".$data_facture["somme"]."</td>"; 
+                    echo '<td><button class="btn-modifier" data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
-
-    <?php
-
-    $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
-    $data = $db->query("SELECT * FROM factures");
-
-    foreach ($data as $data_facture){
-        echo "<tr>";
-        echo "<td>".$data_facture["id_facture"]."</td>";
-        echo "<td>".$data_facture["etat"]."</td>";
-        echo "<td>".$data_facture["date"]."</td>";
-        echo "<td>".$data_facture["type"]."</td>";
-        echo "<td>".$data_facture["somme"]."</td>"; 
-        echo '<td><button class="btn-modifier">Modifier</button></td>';
-        echo "</tr>";
-    }
-    ?>
-    </tbody>
-    </table>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
     <script src="user.js"></script>
