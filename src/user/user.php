@@ -94,6 +94,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                 $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
                 $data = $db->query("SELECT * FROM factures");
                 foreach ($data as $data_facture){
+                  if($_SESSION['id'] == $data_facture['id_user']){
                     echo "<tr>";
                     echo "<td>".$data_facture["id_facture"]."</td>";
                     echo "<td>".$data_facture["etat"]."</td>";
@@ -101,6 +102,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     echo "<td>".$data_facture["type"]."</td>";
                     echo "<td>".$data_facture["somme"]."</td>"; 
                     echo '<td><button class="btn-modifier" data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
+                  }
                     echo "</tr>";
                 }
                 ?>
