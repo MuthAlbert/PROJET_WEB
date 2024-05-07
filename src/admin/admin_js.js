@@ -40,3 +40,9 @@ confirmButtons.forEach(function(button) {
     window.location.href = "admin.php?id=" + userId + "&action=delete";
   });
 });
+
+
+//Pop up modification réussie 
+function UserModifier() {
+  alert("Les informations de l'utilisateur ont été mises à jour avec succès.");
+}

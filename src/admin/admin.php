@@ -34,28 +34,17 @@ if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
     <input  type="text" id="mail" name="mail" class="form-control"><br>
     <h2 class="texte">Mot de passe :</h2>
     <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-control"><br>
-    
+    <h2 class="texte">Choisir un rôle:</h2>
+    <select class="form-control texte" name="role" id="role">
+      <option value="1">Admin</option>
+      <option value="2">Comptable</option>
+      <option value="3">Commerciale</option>
+    </select>
 
 
 <?php
       // Connexion à la base de données
       $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
-
-      // Récupération des rôles depuis la base de données
-      $requete = $db->query("SELECT role FROM utilisateur")->fetchAll();
-
-      // Vérification s'il y a des résultats
-      if ($requete) {
-          echo '<div class="mb-3">';
-          echo '<label for="role" class="form-label texte"><div class="texte">Choisir un rôle:</div></label>';
-          echo '<select id="role" name="role" class="form-control">';
-          // Parcours des résultats et création des options de la liste déroulante
-          foreach ($requete as $row) {
-              echo '<option value="' . $row['id_role'] . '">' . $row['role_nom'] . '</option>';
-          }
-          echo '</select>';
-          echo '</div>';
-      }
 
       if ($_SERVER["REQUEST_METHOD"] === "POST"){
         if (isset($_POST['nom']) 
