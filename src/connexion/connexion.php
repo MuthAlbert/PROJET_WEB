@@ -41,6 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($rep !== false){
             // c'est ok !   
             $_SESSION['id'] = $rep['id_user'];
+            $_SESSION['nom_utilisateur'] = $rep['nom'];
             if ($rep ['role'] == '1') {
                 $_SESSION['logAdmin'] = true;
                 header("Location: ../admin/admin.php");
