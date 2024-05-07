@@ -7,7 +7,6 @@ if(isset($_SESSION['logComptable']) != true || $_SESSION['logComptable'] != true
 }
 ?>
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +30,7 @@ if(isset($_SESSION['logComptable']) != true || $_SESSION['logComptable'] != true
             <th scope="col">date</th>
             <th scope="col">type</th>
             <th scope="col">somme</th>
+            <th scope="col">Utilisateur</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -43,27 +43,8 @@ if(isset($_SESSION['logComptable']) != true || $_SESSION['logComptable'] != true
 
 
        
-    // Vérifier si le formulaire a été soumis
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Vérifier quel bouton a été cliqué
-        if (isset($_POST["valider"])) {
-            // Si le bouton "Valider" a été cliqué, mettre à jour l'état à 1 dans la table Factures
-            $stmt = $db->prepare("UPDATE Factures SET etat = 1 WHERE id_facture = :id");
-            $stmt->bindParam(":id", $_POST["id_facture"]);
-            $stmt->execute();
-            echo "La facture a été validée avec succès.";
-        }
-        elseif (isset($_POST["refuser"])) {
-            // Si le bouton "Refuser" a été cliqué, mettre à jour l'état à 0 dans la table Factures
-            $stmt = $db->prepare("UPDATE Factures SET etat = 0 WHERE id_facture = :id");
-            $stmt->bindParam(":id", $_POST["id_facture"]);
-            $stmt->execute();
-            echo "La facture a été refusée.";
-    }
-}
-
+   
     
-        // while ($row = $data->fetch(PDO::FETCH_NUM)){
             foreach ($data as $data_facture){
             echo "<tr>";
             echo "<td>".$data_facture["id_facture"]."</td>";
@@ -71,22 +52,16 @@ if(isset($_SESSION['logComptable']) != true || $_SESSION['logComptable'] != true
             echo "<td>".$data_facture["date"]."</td>";
             echo "<td>".$data_facture["type"]."</td>";
             echo "<td>".$data_facture["somme"]."</td>";
+            echo "<td>".$data_facture["nom_utilisateur"]."</td>";
             echo '<td>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Actions
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" id="valider">Valider</a></li>
-                        <li><a class="dropdown-item" id="refuser">Refuser</a></li>
-                        
-                    </ul>
-                </div>
+            <form action="traitement.php" method="post">
+                <input type="hidden" name="id_facture" value="'.$data_facture['id_facture'].'">
+                <input type="submit" name="bouton" value="Valider">
+                <input type="submit" name="bouton" value="Refuser">
+            </form>
             </td>';
         }
         echo "</tr>";
-
-        //  }
 
      ?>
 
