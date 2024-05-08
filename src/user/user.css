@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+/* Définit les styles de l'overlay sombre qui couvre la page lorsque la fenêtre contextuelle est ouverte */
 #popup-overlay {
     position: fixed;
     top: 0;
@@ -14,10 +15,12 @@
     display: none; 
 }
 
+/*  Définit les styles de l'overlay lorsque la classe "ouverte" est appliquée, permettant à l'overlay de s'afficher */
 #popup-overlay.open{
     display: block !important;
 }
 
+/* Style pour le contenu de la fenêtre contextuelle, avec un arrière-plan blanc, une largeur maximale et positionné au centre de l'écran */
 .popup-content {
     max-width: 600px;
     width: 100%;
@@ -34,6 +37,7 @@
     margin: 20px;
 }
 
+/* Style pour le bouton de sortie en haut à droite de la fenêtre contextuelle, permettant de la fermer */
 .popup-exit {
     position: absolute;
     top: 10px;

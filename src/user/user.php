@@ -77,7 +77,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
             </div>
         </div>
         <!-- fin popup overlay -->
-
+        <!-- Création de la table -->
         <table class="table">
             <thead>
                 <tr>
@@ -89,6 +89,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     <th scope="col">MODIFICATION</th>
                 </tr>
             </thead>
+            <!-- l'affichage des tickets dynamiquement-->
             <tbody id="ticketBody">
                 <?php
                 $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
@@ -106,6 +107,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                 ?>
             </tbody>
         </table>
+        <!-- fin de la table -->
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
