@@ -103,7 +103,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     echo "<td>".$data_facture["date"]."</td>";
                     echo "<td>".$data_facture["type"]."</td>";
                     echo "<td>".$data_facture["somme"]."</td>"; 
-                    echo '<td><button class="btn-modifier" data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
+                    echo '<td><button class="btn btn-primary btn-modifier" data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
                     echo '<td><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')" class="btn btn-danger">Supprimer</button></td>';
                     echo "</tr>";
                 }
