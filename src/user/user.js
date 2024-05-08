@@ -4,6 +4,12 @@ function submitTicket() {
     const date = document.getElementById("dateInput").value;
     const somme = document.getElementById("prixInput").value;
     const etat = "En attente de traitement";
+
+    if (!type || !date || !somme) {
+        alert("Veuillez remplir tous les champs !");
+        return; // Arrête la fonction si un champ est vide
+    }
+
     var xhr = new XMLHttpRequest();
     var url = "ajout_ticket.php";
     xhr.open("POST", url, true);
@@ -15,9 +21,12 @@ function submitTicket() {
             location.reload();
         }
     };
-    xhr.send("type=" + type + "&date=" + date + "&somme=" + somme + "&etat=" + etat); // Envoyer les données au script PHP
 
-    if (type && date && somme) {
+    // Ajout du ticket dans le tableau côté client
+    if (!type || !date || !somme) {
+        alert("Veuillez remplir tous les champs !");
+        return; // Arrête la fonction si un champ est vide
+    } else {
         const newRow = document.getElementById("ticketBody").insertRow();
         
         newRow.insertCell(0).textContent = "";
@@ -25,6 +34,9 @@ function submitTicket() {
         newRow.insertCell(2).textContent = type;
         newRow.insertCell(3).textContent = date;
         newRow.insertCell(4).textContent = somme;
+        
+        // Envoyer les données au script PHP
+        xhr.send("type=" + type + "&date=" + date + "&somme=" + somme + "&etat=" + etat);
         
         const cellModifier = newRow.insertCell(5);
         const btnModifier = document.createElement("button");
@@ -35,19 +47,16 @@ function submitTicket() {
         };
         cellModifier.appendChild(btnModifier);
         togglePopup();
-    } else {
-        alert("Veuillez remplir tous les champs !");
     }
     location.reload();
 }
 
-// Cette fonction envoie les données d'un nouveau ticket au serveur, les ajoute à la table HTML, puis recharge la page pour afficher les mises à jour
+// Cette fonction sert à afficher ou masquer une fenêtre popup du ticket sur la page web
 function togglePopup() {
     let popup = document.querySelector("#popup-overlay");
     popup.classList.toggle("open");
     if (!popup.classList.contains("open")) {
         reset_popup();
-        // location.reload();
     }
 }
 
@@ -80,21 +89,26 @@ function modification(id_facture) {
     const nouvelleDate = document.getElementById("dateInput").value;
     const nouveauPrix = document.getElementById("prixInput").value;
 
-    var xhr = new XMLHttpRequest();
-    var url = "update_ticket.php";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText);
-            displayTicket()
-            location.reload();
-        }
-    };
-    var params = "id_facture=" + id_facture + "&type=" + nouveauType + "&date=" + nouvelleDate + "&somme=" + nouveauPrix;
-    xhr.send(params);
-    togglePopup();
-    location.reload();
+    if (!nouveauPrix || !nouvelleDate || !nouveauType) {
+        alert("Veuillez remplir tous les champs !");
+        return; // Arrête la fonction si un champ est vide
+    } else {
+        var xhr = new XMLHttpRequest();
+        var url = "update_ticket.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                displayTicket()
+                location.reload();
+            }
+        };
+        var params = "id_facture=" + id_facture + "&type=" + nouveauType + "&date=" + nouvelleDate + "&somme=" + nouveauPrix;
+        xhr.send(params);
+        togglePopup();
+        location.reload();
+    }
 }
 
 //  Écoute les clics sur la page pour détecter si l'utilisateur souhaite modifier un ticket existant, déclenchant alors l'affichage des détails du ticket dans la fenêtre contextuelle.
@@ -104,3 +118,29 @@ document.addEventListener("click", function(event) {
         displayTicket(row);
     }
 });
+
+// Cette fonction supprime un ticket de la base de données et actualise la page après confirmation de la suppression
+function deleteTicket(id_facture) {
+    var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce ticket ?");
+    if (confirmation) {
+        var xhr = new XMLHttpRequest();
+        var url = "delete_ticket.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                // Vérifiez si l'élément avec l'ID id_facture existe
+                var row = document.getElementById(id_facture);
+                if (row) {
+                    // Supprimer la ligne du ticket de l'interface utilisateur
+                    console.log("Supprimer l'élément avec l'ID:", id_facture);
+                    row.parentNode.removeChild(row);
+                }
+            }
+        };
+        var params = "id_facture=" + id_facture;
+        xhr.send(params);
+    }
+    location.reload();
+}

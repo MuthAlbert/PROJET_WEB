@@ -35,6 +35,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
             </div>
         </nav>
         <!-- Fin navbar -->
+        <h1>Bienvenue !</h1>
 
         <div class="centered-block">
             <button onclick="togglePopup()" class="btn btn-primary mt-3 me-2 animate-pop">Ajouter un ticket</button>
@@ -62,7 +63,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                 <!-- Prix -->
                 <div class="mb-3">
                     <label for="prixInput" class="form-label">Prix*</label>
-                    <input type="number" id="prixInput" class="form-control">
+                    <input type="number" id="prixInput" class="form-control" min="0">
                 </div>
                 <!-- Bouton pour joindre un fichier -->
                 <div class="mb-3">
@@ -87,6 +88,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     <th scope="col">DATE</th>
                     <th scope="col">PRIX</th>
                     <th scope="col">MODIFICATION</th>
+                    <th scope="col"> </th>
                 </tr>
             </thead>
             <!-- l'affichage des tickets dynamiquement-->
@@ -94,7 +96,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                 <?php
                 $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
                 $data = $db->query("SELECT * FROM factures");
-                foreach ($data as $data_facture){
+                foreach ($data as $data_facture) {
                     echo "<tr>";
                     echo "<td>".$data_facture["id_facture"]."</td>";
                     echo "<td>".$data_facture["etat"]."</td>";
@@ -102,6 +104,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     echo "<td>".$data_facture["type"]."</td>";
                     echo "<td>".$data_facture["somme"]."</td>"; 
                     echo '<td><button class="btn-modifier" data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
+                    echo '<td><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')" class="btn btn-danger">Supprimer</button></td>';
                     echo "</tr>";
                 }
                 ?>

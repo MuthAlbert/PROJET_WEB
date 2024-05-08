@@ -1,11 +1,14 @@
 <?php
 session_start();
-
 // Connexion à la base de données
 $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4", "root", "");
+// Vérification de la connexion
+if ($db === false) {
+    die("Erreur dans la connexion à la db !");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST['id_facture']) && isset($_POST['type']) && isset($_POST['date']) && isset($_POST['somme'])){
+    if (isset($_POST['id_facture']) && isset($_POST['type']) && isset($_POST['date']) && isset($_POST['somme'])){
         // Récupérez les données du formulaire
         $id_facture = $_POST['id_facture'];
         $nouveauType = $_POST['type'];
