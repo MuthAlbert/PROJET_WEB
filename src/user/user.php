@@ -105,7 +105,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     echo "<td>".$data_facture["somme"]."</td>"; 
                     echo '<td class="text-center"><button class="btn btn-primary btn-modifier " data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
                     // echo '<td><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')" class="btn btn-danger">Supprimer</button></td>';
-                    echo '<td class="text-center"><button class="btn btn-danger"onclick="deleteTicket(\''.$data_facture["id_facture"].'\')">Supprimer<img src="../../images/corbeil.jpg" alt="corbeille"></button></td>';
+                    echo '<td class="text-center"><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')"><img src="../../images/corbeil.jpg" alt=""></button></td>';
                     echo "</tr>";
                 }
                 ?>
