@@ -101,6 +101,12 @@ if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
      $stmt=$db->prepare("DELETE FROM utilisateur WHERE id_user=:id");
      $stmt->bindParam (":id",$id);
 
+    //  Facture d'un user supprimé
+    //  $suppr = "Utilisateur supprimé";
+    //  $id_user = $_SESSION['id'];
+    //  $req = $db->prepare("UPDATE factures SET nom_utilisateur = :suppr WHERE id_user = :id_user");
+    //  $req->execute(['suppr' => $suppr, 'id_user' => $id_user]);
+
      $stmt->execute();
      header("Location: admin.php");
      exit();
