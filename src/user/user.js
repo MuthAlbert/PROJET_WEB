@@ -5,11 +5,6 @@ function submitTicket() {
     const somme = document.getElementById("prixInput").value;
     const etat = "En attente de traitement";
 
-    if (!type || !date || !somme) {
-        alert("Veuillez remplir tous les champs !");
-        return; // Arrête la fonction si un champ est vide
-    }
-
     var xhr = new XMLHttpRequest();
     var url = "ajout_ticket.php";
     xhr.open("POST", url, true);

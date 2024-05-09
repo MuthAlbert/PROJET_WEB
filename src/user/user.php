@@ -88,7 +88,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     <th scope="col">DATE</th>
                     <th scope="col">PRIX</th>
                     <th scope="col" class="text-center" >MODIFICATION</th>
-                    <th scope="col" class="text-center">SUPPRIMER</th>
+                    <th scope="col" class="text-center"> </th>
                 </tr>
             </thead>
             <!-- l'affichage des tickets dynamiquement-->
