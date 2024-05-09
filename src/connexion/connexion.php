@@ -59,9 +59,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             } 
         }
         else{
-            //C'est pas ok !
-            echo "Wrong username or password !";
-            header("Location ../connexion/connexion.html");
+             //C'est pas ok ! 
+            header("Location: connexion.html");
         }
     }
 }

@@ -87,8 +87,8 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     <th scope="col">TYPE</th>
                     <th scope="col">DATE</th>
                     <th scope="col">PRIX</th>
-                    <th scope="col">MODIFICATION</th>
-                    <th scope="col"> </th>
+                    <th scope="col" class="text-center" >MODIFICATION</th>
+                    <th scope="col" class="text-center">SUPPRIMER</th>
                 </tr>
             </thead>
             <!-- l'affichage des tickets dynamiquement-->
@@ -103,9 +103,9 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     echo "<td>".$data_facture["date"]."</td>";
                     echo "<td>".$data_facture["type"]."</td>";
                     echo "<td>".$data_facture["somme"]."</td>"; 
-                    echo '<td><button class="btn btn-primary btn-modifier" data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
+                    echo '<td class="text-center"><button class="btn btn-primary btn-modifier " data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
                     // echo '<td><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')" class="btn btn-danger">Supprimer</button></td>';
-                    echo '<td><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')"><img src="../../images/corbeil.jpg" alt=""></button></td>';
+                    echo '<td class="text-center"><button class="btn btn-danger"onclick="deleteTicket(\''.$data_facture["id_facture"].'\')">Supprimer<img src="../../images/corbeil.jpg" alt="corbeille"></button></td>';
                     echo "</tr>";
                 }
                 ?>

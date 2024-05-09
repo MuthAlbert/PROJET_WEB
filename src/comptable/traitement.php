@@ -14,14 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $db->prepare("UPDATE factures SET etat = :etat WHERE id_facture = :id");
         $stmt->execute(['etat' => $etat, 'id' => $id_facture]);
         echo $etat;
-        header("comptable.php");
+        header("Location: comptable.php");
     } elseif ($valeur_bouton == "Refuser"){
         $etat = "Refusé";
         // Si le bouton "Refuser" a été cliqué, mettre à jour l'état à 0 dans la table Factures
         $stmt = $db->prepare("UPDATE factures SET etat = :etat WHERE id_facture = :id");
         $stmt->execute(['etat' => $etat, 'id' => $id_facture]);
         echo $etat;
-        header("comptable.php");
+        header("Location: comptable.php");
         }
     }
 }
