@@ -12,8 +12,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TORILLEC</title>
-    <link rel="stylesheet" type="text/css" href="../../index.css">
+    <title>TORILLEC - Commercial</title>
     <link rel="stylesheet" type="text/css" href="user.css">
     <link rel="icon" href="../../Images/logo.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.css"/>
@@ -38,7 +37,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
         <h1>Bienvenue !</h1>
 
         <div class="centered-block">
-            <button onclick="togglePopup()" class="btn btn-primary mt-3 me-2 animate-pop">Ajouter un ticket</button>
+            <button onclick="togglePopup()" class="btn_nv">Ajouter un ticket</button>
         </div>
 
         <!-- popup overlay -->
@@ -72,8 +71,8 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     <small class="text-muted">Formats acceptés : PDF, JPEG, PNG, etc.</small>
                 </div>
                 <!-- Boutons Soumettre et Annuler -->
-                <button id="btnModifier" onclick="submitTicket()" class="btn btn-primary mt-3 me-2">Soumettre</button>
-                <button onclick="togglePopup()" class="btn btn-secondary mt-3">Annuler</button>
+                <button id="btnModifier" onclick="submitTicket()" class="btn_nv">Soumettre</button>
+                <button onclick="togglePopup()" class="btn_nv">Annuler</button>
                 <a href="javascript:void(0)" onclick="togglePopup()" class="popup-exit">X</a>
             </div>
         </div>
@@ -103,7 +102,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     echo "<td>".$data_facture["date"]."</td>";
                     echo "<td>".$data_facture["type"]."</td>";
                     echo "<td>".$data_facture["somme"]."</td>"; 
-                    echo '<td class="text-center"><button class="btn btn-primary btn-modifier " data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
+                    echo '<td class="text-center"><button class="btn_nv btn-modifier " data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
                     // echo '<td><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')" class="btn btn-danger">Supprimer</button></td>';
                     echo '<td class="text-center"><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')"><img src="../../images/corbeil.jpg" alt=""></button></td>';
                     echo "</tr>";
