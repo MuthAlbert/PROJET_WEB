@@ -23,7 +23,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
     <div class="container">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">
-           <a href="../../deconnexion.php" class="navbar-brand">TORILLEC</a> 
+           <a class="navbar-brand">TORILLEC</a> 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
