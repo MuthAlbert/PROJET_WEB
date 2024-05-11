@@ -99,12 +99,14 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                 $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
                 $data = $db->query("SELECT * FROM factures");
                 foreach ($data as $data_facture) {
+                    if($_SESSION['id'] == $data_facture["id_user"]){
                     echo "<tr>";
                     echo "<td>".$data_facture["id_facture"]."</td>";
                     echo "<td>".$data_facture["etat"]."</td>";
                     echo "<td>".$data_facture["date"]."</td>";
                     echo "<td>".$data_facture["type"]."</td>";
                     echo "<td>".$data_facture["somme"]."</td>"; 
+                    }
                     echo '<td class="text-center"><button class="btn_nv btn-modifier " data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
                     // echo '<td><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')" class="btn btn-danger">Supprimer</button></td>';
                     echo '<td class="text-center"><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')"><img src="../../images/corbeil.jpg" alt=""></button></td>';
