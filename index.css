@@ -221,28 +221,6 @@ body {
 }
 /* Fin page Contact */
 
-/* Page Pourquoi nous? */
-.img_pn {
-    width: 300px;
-}
-
-.title2 {
-    text-align: center;
-    font-size: 35px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: bold;
-}
-
-.text_pn {
-    font-size: 18px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align: center;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 200px;
-}
-/* Fin page Pourquoi nous? */
-
 /* Page Connexion */
 .card_connexion {
     display: flex;
@@ -294,6 +272,17 @@ body {
     margin: 20px auto;
 } 
 /* Fin page Connexion */
+
+/* Page Déconnexion */
+.text_pn {
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 200px;
+}
+/* Fin page déconnexion */
 
 /* Footer */
 footer {
