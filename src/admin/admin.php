@@ -44,15 +44,15 @@ if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
   <div class="cadre2">
   <h1 class="ajout"> Ajouter un utilisateur</h1><br>
   <form class="marge"action="admin.php" method="post">
-    <h2 class="texte">Nom:</h2>
+    <h2 class="texte">Nom</h2>
     <input type="text" id="nom" name="nom" class="form-control"><br>
-    <h2 class="texte">Prénom:</h2>
+    <h2 class="texte">Prénom</h2>
     <input type="text" id="prenom" name="prenom" class="form-control"><br>
-    <h2 class="texte">Mail:</h2>
+    <h2 class="texte">Mail</h2>
     <input  type="text" id="mail" name="mail" class="form-control"><br>
-    <h2 class="texte">Mot de passe :</h2>
+    <h2 class="texte">Mot de passe</h2>
     <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-control"><br>
-    <h2 class="texte">Choisir un rôle:</h2>
+    <h2 class="texte">Choisir un rôle</h2>
     <select class="form-control texte" name="role" id="role">
       <option value="1">Admin</option>
       <option value="2">Comptable</option>
