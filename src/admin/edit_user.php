@@ -51,7 +51,7 @@
                     </select>
                 </div>
                 <button type="submit" class="bouton"><a>Modifier</button>
-                <button type="button" class="bouton"><a style="text-decoration:none" href="admin.php">Retour</a></button>
+                <button type="button" class="bouton"><a style="text-decoration:none; color:black" href="admin.php">Retour</a></button>
             </form>
 
             <?php
