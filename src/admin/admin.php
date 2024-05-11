@@ -119,7 +119,7 @@ if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
      $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
      $stmt=$db->prepare("DELETE FROM utilisateur WHERE id_user=:id");
      $stmt->bindParam (":id",$id);
-     $req = $db->prepare("UPDATE factures SET nom_utilisateur = :suppr WHERE id_user = :id");
+     $req = $db->prepare("UPDATE factures SET nom_utilisateur = CONCAT(nom_utilisateur, :suppr) WHERE id_user = :id");
      $req->execute(['suppr' => $suppr, 'id' => id]);
      
      $stmt->execute();
