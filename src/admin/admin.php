@@ -114,17 +114,14 @@ if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
 
  <?php
    if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action']=='delete'){
-     $id=$_GET['id']; 
+     $id=$_GET['id'];
+     $suppr = "Utilisateur supprimé";
      $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
      $stmt=$db->prepare("DELETE FROM utilisateur WHERE id_user=:id");
      $stmt->bindParam (":id",$id);
-
-    //  Facture d'un user supprimé
-    //  $suppr = "Utilisateur supprimé";
-    //  $id_user = $_SESSION['id'];
-    //  $req = $db->prepare("UPDATE factures SET nom_utilisateur = :suppr WHERE id_user = :id_user");
-    //  $req->execute(['suppr' => $suppr, 'id_user' => $id_user]);
-
+     $req = $db->prepare("UPDATE factures SET nom_utilisateur = :suppr WHERE id_user = :id");
+     $req->execute(['suppr' => $suppr, 'id' => id]);
+     
      $stmt->execute();
      header("Location: admin.php");
      exit();
