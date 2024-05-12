@@ -14,8 +14,8 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TORILLEC - Commercial</title>
     <link rel="stylesheet" type="text/css" href="user.css">
+    <link rel="stylesheet" type="text/css" href="../../index.css">
     <link rel="icon" href="../../Images/logo.png" type="image/png">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
@@ -24,9 +24,6 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">
            <a class="navbar-brand">TORILLEC</a> 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -118,6 +115,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
         <!-- fin de la table -->
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
     <script src="user.js"></script>
 </body>
