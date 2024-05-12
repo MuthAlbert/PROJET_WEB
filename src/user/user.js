@@ -66,12 +66,19 @@ function reset_popup() {
 function displayTicket(row) {
     const cellules = row.cells;
     const id_facture = cellules[0].textContent;
+    const etat = cellules[1].textContent;
 
     document.getElementById("types").value = cellules[2].textContent;
     document.getElementById("dateInput").value = cellules[3].textContent;
     document.getElementById("prixInput").value = cellules[4].textContent;
 
     const btnModifier = document.getElementById("btnModifier");
+    if (etat != "En attente de traitement") {
+        btnModifier.disabled = true;
+    } else {
+        btnModifier.disabled = false;
+    }
+
     btnModifier.onclick = function() {
         modification(id_facture);
     };
