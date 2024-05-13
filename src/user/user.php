@@ -79,31 +79,30 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
         <!-- fin popup overlay -->
         <!-- Création de la table -->
         <table class="table">
-          <div class="col-md-2">
-                            <h4>FILTRE :</h4>
+            <div class="col-md-2">
+                <h4>FILTRE :</h4>
+            </div>
+            <div class="col-md-10">
+                <form action="" method="GET">
+                    <div class="row">
+                        <div class="col-md-4">
+                          
                         </div>
-
-                        <div class="col-md-10">
-                            <form action="" method="GET">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                      
-                                    </div>
-                                <div class="col-md-4">
-                                    <select name="status" required class="form-select">
-                                        <option value="">Selectionner le Status</option>
-                                        <option value="En attente de traitement" <?= isset($_GET['status']) && $_GET['status'] == 'En attente de traitement' ? 'selected' : '' ?>>En attente</option>
-                                        <option value="Validé" <?= isset($_GET['status']) && $_GET['status'] == 'Validé' ? 'selected' : '' ?>>Validé</option>
-                                        <option value="Refusé" <?= isset($_GET['status']) && $_GET['status'] == 'Refusé' ? 'selected' : '' ?>>Refusé</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary">Filtre</button>
-                                    <a href="user.php" class="btn btn-danger">Reset</a>
-                                </div>
-                        
-                            </form>
+                        <div class="col-md-4">
+                            <select name="status" required class="form-select">
+                                <option value="">Selectionner le Status</option>
+                                <option value="En attente de traitement" <?= isset($_GET['status']) && $_GET['status'] == 'En attente de traitement' ? 'selected' : '' ?>>En attente</option>
+                                <option value="Validé" <?= isset($_GET['status']) && $_GET['status'] == 'Validé' ? 'selected' : '' ?>>Validé</option>
+                                <option value="Refusé" <?= isset($_GET['status']) && $_GET['status'] == 'Refusé' ? 'selected' : '' ?>>Refusé</option>
+                            </select>
                         </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary">Filtre</button>
+                            <a href="user.php" class="btn btn-danger">Reset</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -128,7 +127,6 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                       $data = $db->query("SELECT * FROM factures");
                 } 
 
-
                 foreach ($data as $data_facture) {
                     echo "<tr>";
                     echo "<td>".$data_facture["id_facture"]."</td>";
@@ -149,6 +147,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
     <script src="user.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
       $(document).ready( function () {
         $('#myTable').DataTable();
