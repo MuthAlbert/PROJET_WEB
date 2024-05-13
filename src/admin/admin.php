@@ -44,23 +44,22 @@ if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
   <div class="cadre2">
   <h1 class="ajout"> Ajouter un utilisateur</h1><br>
   <form class="marge"action="admin.php" method="post">
-    <h2 class="texte">Nom:</h2>
+    <h2 class="texte">Nom</h2>
     <input type="text" id="nom" name="nom" class="form-control"><br>
-    <h2 class="texte">Prénom:</h2>
+    <h2 class="texte">Prénom</h2>
     <input type="text" id="prenom" name="prenom" class="form-control"><br>
-    <h2 class="texte">Mail:</h2>
+    <h2 class="texte">Mail</h2>
     <input  type="text" id="mail" name="mail" class="form-control"><br>
-    <h2 class="texte">Mot de passe :</h2>
+    <h2 class="texte">Mot de passe</h2>
     <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-control"><br>
-    <h2 class="texte">Choisir un rôle:</h2>
+    <h2 class="texte">Choisir un rôle</h2>
     <select class="form-control texte" name="role" id="role">
       <option value="1">Admin</option>
       <option value="2">Comptable</option>
-      <option value="3">Commerciale</option>
+      <option value="3">Commercial</option>
     </select>
 
-
-<?php
+    <?php
       // Connexion à la base de données
       $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
 
@@ -95,10 +94,8 @@ if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
     </div>
   </form>
 
-
-
-<!---afficher les données de tout les users, supprimer les users--->
-<table class="table cadre" > <!-- Affichage dans un tableau -->
+  <div class="table-container">
+<table class="table" style="border-radius:"30px"> <!-- Affichage dans un tableau -->
     <thead>
     <tr>
         <th scope="col">Id utilisateur</th>
@@ -113,25 +110,25 @@ if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
     <tbody>
 
  <?php
-   if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action']=='delete'){
-     $id=$_GET['id']; 
-     $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
-     $stmt=$db->prepare("DELETE FROM utilisateur WHERE id_user=:id");
-     $stmt->bindParam (":id",$id);
+if(isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
+  $id = $_GET['id'];
 
-    //  Facture d'un user supprimé
-    //  $suppr = "Utilisateur supprimé";
-    //  $id_user = $_SESSION['id'];
-    //  $req = $db->prepare("UPDATE factures SET nom_utilisateur = :suppr WHERE id_user = :id_user");
-    //  $req->execute(['suppr' => $suppr, 'id_user' => $id_user]);
+  $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
+  
+  // Supprimer l'utilisateur de la table utilisateur
+  $stmt = $db->prepare("DELETE FROM utilisateur WHERE id_user = :id");
+  $stmt->bindParam(':id', $id);
+  $stmt->execute();
 
-     $stmt->execute();
-     header("Location: admin.php");
-     exit();
+  // Redirection vers la page admin.php après la suppression
+  header("Location: admin.php");
+  exit();
+}
 
-   }     
-   $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
-   $data = $db->query("SELECT * FROM utilisateur")->fetchAll();
+// Si l'action de suppression n'est pas déclenchée, récupérer les données des utilisateurs
+$db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
+$data = $db->query("SELECT * FROM utilisateur")->fetchAll();
+
 
     foreach ($data as $row){
       echo "<tr>";
@@ -148,7 +145,7 @@ if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item bouton_modifier" href="edit_user.php?id='.$row['id_user'].'">Modifier</a></li>
-                    <li><a class="dropdown-item bouton_supprimer" href="#" onclick="confirmDelete('.$row['id_user'].')">Supprimer</a></li>
+                    <li><a class="dropdown-item bouton_supprimer" onclick="afficherModal(' . $row['id_user'] . ')">Supprimer</a></li>
                 </ul>
             </div>
         </td>';
@@ -158,11 +155,52 @@ if(isset($_SESSION['logAdmin']) != true || $_SESSION['logAdmin'] != true) {
  
  ?>
 
+     <!-- Boîte de dialogue modale -->
+     <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
+            <button id="confirmButton">Confirmer</button>
+            <button id="cancelButton">Annuler</button>
+        </div>
+    </div>
+
+    </tbody>
+    </table>
+
+<!-- Bouton de suppression avec appel à la fonction de confirmation -->
+<!--
+<button onclick="afficherModal()">Supprimer</button>
+
+<!-- Fenêtre modale pour la confirmation de suppression -->
+<div id="modalConfirmation" class="modal">
+  <div class="modal-content">
+    <p>Êtes-vous sûr de vouloir supprimer cet utilisateur?</p>
+    <button onclick="supprimerUtilisateur(<?php echo $row['id_user']; ?>)">Oui</button>
+    <button onclick="fermerModal()">Annuler</button>
+  </div>
+</div>
+
+<!-- Fenêtre modale pour la confirmation de suppression réussie -->
+<div id="modalConfirmationReussie" class="modal">
+  <div class="modal-content">
+    <p>L'utilisateur a été supprimé avec succès!</p>
+    <button onclick="redirectToDeletePage()">Fermer</button>
+  </div>
+</div>
+
     </div>
 </div>
-</tbody>
+
+    <!-- Footer -->
+    <footer>
+    <section class="footer_section">
+        <div class="container">
+            <center><p>
+                © 2024 - Tous droits révervés par Torillec Company
+            </center></p>
+        </div>
+    </section>
+    <!-- Fin footer -->
+
 </body>
-</table>
-</div>
-    </div>
 </html>

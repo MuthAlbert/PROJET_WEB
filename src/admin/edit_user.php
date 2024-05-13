@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="admin.css">
-    <script  src="admin_js.js"></script>
+    <script src="admin_js.js"></script>
 </head>
 
 
@@ -24,7 +24,7 @@
         if ($user) {
             ?>
             <!-- Formulaire pour modifier l'utilisateur -->
-            <form class="cadre1" action="edit_user.php?id=<?php echo $id; ?>" method="post">
+            <form class="cadre1" id="modificationForm" action="edit_user.php?id=<?php echo $id; ?>" method="post">
             <h1 class="title">Modifier Utilisateur</h1>
                 <div class="mb-3">
                     <label for="nom" class="form-label">Nom :</label>
@@ -50,8 +50,8 @@
                         <option value="3" <?php if ($user['role'] == 3) echo 'selected'; ?>>Commerciale</option>
                     </select>
                 </div>
-                <button type="submit" class="bouton"><a>Modifier</button>
-                <button type="button" class="bouton"><a style="text-decoration:none" href="admin.php">Retour</a></button>
+                <button type="button" class="bouton" onclick="afficherModificationReussieModal()">Modifier</button>
+                <button type="button" class="bouton"><a style="text-decoration:none; color:black" href="admin.php">Retour</a></button>
             </form>
 
             <?php
@@ -71,20 +71,24 @@
                 $stmt->bindParam(":id", $id);
 
                 if ($stmt->execute()) {
-                    echo "Les informations de l'utilisateur ont été mises à jour avec succès.";
+                    // Modification réussie, afficher le pop-up
+                    echo "<script>afficherModificationReussieModal();</script>";
                 } else {
                     echo "Une erreur s'est produite lors de la mise à jour des informations de l'utilisateur.";
                 }
             }
-            ?>
-
-        <?php
-        } else {
-            echo "<p>Utilisateur introuvable.</p>";
         }
-    } else {
-        echo "<p>Identifiant de l'utilisateur non spécifié.</p>";
     }
     ?>
+
+<!-- Pop-up de modification réussie -->
+<div id="modificationReussieModal" class="modal">
+    <div class="modal-content">
+        <p>Les informations de l'utilisateur ont été mises à jour avec succès.</p>
+        <button onclick="fermerModificationReussieModal()">Fermer</button>
+    </div>
+</div>
+
+
 </body>
 </html>
