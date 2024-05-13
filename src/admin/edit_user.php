@@ -50,7 +50,7 @@
                         <option value="3" <?php if ($user['role'] == 3) echo 'selected'; ?>>Commerciale</option>
                     </select>
                 </div>
-                <button type="button" class="bouton" onclick="afficherModificationReussieModal()">Modifier</button>
+                <button type="submit" class="bouton" onclick="afficherModificationReussieModal()">Modifier</button>
                 <button type="button" class="bouton"><a style="text-decoration:none; color:black" href="admin.php">Retour</a></button>
             </form>
 

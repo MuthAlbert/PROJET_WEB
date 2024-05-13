@@ -110,12 +110,8 @@ function afficherModificationReussieModal() {
 
 // Fonction pour fermer le pop-up de modification réussie
 function fermerModificationReussieModal() {
-  var modal = document.getElementById("modificationReussieModal");
-  modal.style.display = "none";
-  
-  // Soumettre le formulaire
-  document.getElementById("modificationForm").submit();
-
-  // Redirection vers admin.php après la fermeture du pop-up
-  window.location.href = "admin.php";
+  document.getElementById("fermerPopup").addEventListener("click", function() {
+    fermerModal('modificationReussieModal');
+    document.querySelector(".cadre1").submit();
+  });
 }
