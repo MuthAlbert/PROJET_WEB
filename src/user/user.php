@@ -34,7 +34,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
             </div>
         </nav>
         <!-- Fin navbar -->
-        <h1>Bienvenue !</h1>
+        <h1 class="text-center">Bienvenue chère utilisateur !</h1>
 
         <div class="centered-block">
             <button onclick="togglePopup()" class="btn_nv">Ajouter un ticket</button>
@@ -109,8 +109,8 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     <th scope="col">ETAT</th>
                     <th scope="col">TYPE</th>
                     <th scope="col">DATE</th>
-                    <th scope="col">PRIX</th>
-                    <th scope="col" class="text-center" >MODIFICATION</th>
+                    <th scope="col" class="text-center">PRIX</th>
+                    <th scope="col" class="text-center">MODIFICATION</th>
                     <th scope="col" class="text-center">SUPPRIMER</th>
                 </tr>
             </thead>
@@ -133,9 +133,8 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     echo "<td>".$data_facture["etat"]."</td>";
                     echo "<td>".$data_facture["date"]."</td>";
                     echo "<td>".$data_facture["type"]."</td>";
-                    echo "<td>".$data_facture["somme"]."</td>"; 
+                    echo "<td class='text-center'>".$data_facture["somme"]."</td>"; 
                     echo '<td class="text-center"><button class="btn_nv btn-modifier " data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
-                    // echo '<td><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')" class="btn btn-danger">Supprimer</button></td>';
                     echo '<td class="text-center"><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')"><img src="../../images/corbeil.jpg" alt=""></button></td>';
                     echo "</tr>";
                 }
