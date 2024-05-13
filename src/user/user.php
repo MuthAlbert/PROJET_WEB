@@ -29,7 +29,7 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../../deconnexion.php"><img src="../../Images/user.png" class="user"> Log out</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../deconnexion.php"><img src="../../Images/user.png" class="user"> Déconnexion</a></li>
                 </ul>
             </div>
         </nav>
