@@ -17,8 +17,6 @@ if(isset($_SESSION['logComptable']) != true || $_SESSION['logComptable'] != true
     <link rel="stylesheet" type="text/css" href="comptable.css">
     <link rel="icon" href="../../Images/logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="comptable.css">
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -74,8 +72,8 @@ if(isset($_SESSION['logComptable']) != true || $_SESSION['logComptable'] != true
             echo '<td>
             <form action="traitement.php" method="post">
                 <input type="hidden" name="id_facture" value="'.$data_facture['id_facture'].'">
-                <input type="submit" name="bouton" class="bouton" value="Valider">
-                <input type="submit" name="bouton" class="bouton" value="Refuser">
+                <input type="submit" name="bouton" class="bouton_valider" value="Valider">
+                <input type="submit" name="bouton" class="bouton_refuser" value="Refuser">
             </form>
             </td>';
         }
