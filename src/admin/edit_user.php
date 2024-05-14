@@ -84,7 +84,7 @@
 <!-- Pop-up de modification réussie -->
 <div id="modificationReussieModal" class="modal">
     <div class="modal-content">
-        <p>Les informations de l'utilisateur ont été mises à jour avec succès.</p>
+        <p>Modifié avec succès.</p>
         <button onclick="fermerModificationReussieModal()">Fermer</button>
     </div>
 </div>
