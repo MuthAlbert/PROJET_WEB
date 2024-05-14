@@ -36,85 +36,84 @@ if(isset($_SESSION['logComptable']) != true || $_SESSION['logComptable'] != true
         <div class="col-md-12 text-center">
             <h1>COMPTABLE </h1>
         </div>
-        <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <h4>FILTRE :</h4>
-                        </div>
-
-                        <div class="col-md-10">
-                            <form action="" method="GET">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <input type="date" name="date" required value="<?= isset($_GET['date']) ? $_GET['date'] : '' ?>" class="form-control">
-                                    </div>
-                                <div class="col-md-4">
-                                    <select name="status" required class="form-select">
-                                        <option value="">Selectionner le Status</option>
-                                        <option value="En attente de traitement" <?= isset($_GET['status']) && $_GET['status'] == 'En attente de traitement' ? 'selected' : '' ?>>En attente</option>
-                                        <option value="Validé" <?= isset($_GET['status']) && $_GET['status'] == 'Validé' ? 'selected' : '' ?>>Validé</option>
-                                        <option value="Refusé" <?= isset($_GET['status']) && $_GET['status'] == 'Refusé' ? 'selected' : '' ?>>Refusé</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary">Filtre</button>
-                                    <a href="comptable.php" class="btn btn-danger">Reset</a>
-                                </div>
-                        
-                            </form>
-                        </div>
+        
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-2">
+                        <h4>FILTRE :</h4>
                     </div>
-                    <table id="myTable" class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">ETAT</th>
-                                <th scope="col">DATE</th>
-                                <th scope="col">TYPE</th>
-                                <th scope="col">SOMME</th>
-                                <th scope="col">UTILISATEUR</th>
-                                <th scope="col">ACTIONS</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
-                                $data = $db->query("SELECT * FROM factures");
 
-                            if(isset($_GET['date']) && $_GET['date'] !='' && isset($_GET['status']) && $_GET['status'] !='' ){
-                                $date = ($_GET['date']);
-                                $status=($_GET['status']);
-                                $data = $db->query("SELECT * FROM factures WHERE date = '$date' AND etat='$status'");
-                            }
-                            else{
-                            $data = $db->query("SELECT * FROM factures");
-                            } 
-                         
-                   
-                            foreach ($data as $data_facture){
-                                echo "<tr>";
-                                echo "<td>".$data_facture["id_facture"]."</td>";
-                                echo "<td>".$data_facture["etat"]."</td>";
-                                echo "<td>".$data_facture["date"]."</td>";
-                                echo "<td>".$data_facture["type"]."</td>";
-                                echo "<td>".$data_facture["somme"]."</td>";
-                                echo "<td>".$data_facture["nom_utilisateur"]."</td>";
-                                echo '<td>
-                                <form action="traitement.php" method="post">
-                                    <input type="hidden" name="id_facture" value="'.$data_facture['id_facture'].'">
-                                    <input type="submit" name="bouton" class="bouton_valider" value="Valider">
-                                    <input type="submit" name="bouton" class="bouton_refuser" value="Refuser">
-                                </form>
-                                </td>';
-                                echo "</tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                    <div class="col-md-10">
+                        <form action="" method="GET">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="date" name="date" required value="<?= isset($_GET['date']) ? $_GET['date'] : '' ?>" class="form-control">
+                                </div>
+                            <div class="col-md-4">
+                                <select name="status" required class="form-select">
+                                    <option value="">Selectionner le Status</option>
+                                    <option value="En attente de traitement" <?= isset($_GET['status']) && $_GET['status'] == 'En attente de traitement' ? 'selected' : '' ?>>En attente</option>
+                                    <option value="Validé" <?= isset($_GET['status']) && $_GET['status'] == 'Validé' ? 'selected' : '' ?>>Validé</option>
+                                    <option value="Refusé" <?= isset($_GET['status']) && $_GET['status'] == 'Refusé' ? 'selected' : '' ?>>Refusé</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary">Filtre</button>
+                                <a href="comptable.php" class="btn btn-danger">Reset</a>
+                            </div>
+                    
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+            <table id="myTable" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">ETAT</th>
+                        <th scope="col">DATE</th>
+                        <th scope="col">TYPE</th>
+                        <th scope="col">SOMME</th>
+                        <th scope="col">UTILISATEUR</th>
+                        <th scope="col">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $db = new PDO("mysql:host=localhost;dbname=torillec;charset=utf8mb4","root","");
+                        $data = $db->query("SELECT * FROM factures");
+
+                    if(isset($_GET['date']) && $_GET['date'] !='' && isset($_GET['status']) && $_GET['status'] !='' ){
+                        $date = ($_GET['date']);
+                        $status=($_GET['status']);
+                        $data = $db->query("SELECT * FROM factures WHERE date = '$date' AND etat='$status'");
+                    }
+                    else{
+                    $data = $db->query("SELECT * FROM factures");
+                    } 
+                 
+           
+                    foreach ($data as $data_facture){
+                        echo "<tr>";
+                        echo "<td>".$data_facture["id_facture"]."</td>";
+                        echo "<td>".$data_facture["etat"]."</td>";
+                        echo "<td>".$data_facture["date"]."</td>";
+                        echo "<td>".$data_facture["type"]."</td>";
+                        echo "<td>".$data_facture["somme"]."</td>";
+                        echo "<td>".$data_facture["nom_utilisateur"]."</td>";
+                        echo '<td>
+                        <form action="traitement.php" method="post">
+                            <input type="hidden" name="id_facture" value="'.$data_facture['id_facture'].'">
+                            <input type="submit" name="bouton" class="bouton_valider" value="Valider">
+                            <input type="submit" name="bouton" class="bouton_refuser" value="Refuser">
+                        </form>
+                        </td>';
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        
     </div>
     
 
