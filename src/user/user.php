@@ -131,8 +131,8 @@ if(isset($_SESSION['logUser']) != true || $_SESSION['logUser'] != true) {
                     echo "<tr>";
                     echo "<td>".$data_facture["id_facture"]."</td>";
                     echo "<td>".$data_facture["etat"]."</td>";
-                    echo "<td>".$data_facture["date"]."</td>";
                     echo "<td>".$data_facture["type"]."</td>";
+                    echo "<td>".$data_facture["date"]."</td>";
                     echo "<td class='text-center'>".$data_facture["somme"]."</td>"; 
                     echo '<td class="text-center"><button class="btn_nv btn-modifier " data-ticket-id="' . $data_facture["id_facture"] . '">Modifier</button></td>';
                     echo '<td class="text-center"><button onclick="deleteTicket(\''.$data_facture["id_facture"].'\')"><img src="../../images/corbeil.jpg" alt=""></button></td>';
