@@ -46,21 +46,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $_SESSION['logAdmin'] = true;
                 header("Location: ../admin/admin.php");
                 echo 'Connexion réussie'; 
+                exit();
             } 
             if ($rep ['role'] == "2") {
                 $_SESSION["logComptable"] = true;
                 header("Location: ../comptable/comptable.php");
                 echo 'Connexion réussie';
+                exit();
             } 
             if ($rep ['role'] == '3') {
                 $_SESSION["logUser"] = true;
                 header("Location: ../user/user.php");
                 echo 'Connexion réussie';
+                exit();
             } 
         }
         else{
-             //C'est pas ok ! 
-            header("Location: connexion.html");
+             //C'est pas ok !
+            header("Location: connexion.html?error=1");
+             exit();
         }
     }
+}
+
+if (isset($_GET['error']) && $_GET['error'] == 1) {
+    echo "<script>afficherErreurModal();</script>";
 }
