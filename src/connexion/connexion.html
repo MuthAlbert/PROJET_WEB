@@ -6,6 +6,7 @@
     <title>TORILLEC - Connexion</title>
     <link rel="stylesheet" type="text/css" href="../../index.css">
     <link rel="icon" href="../../images/logo.png" type="image/png">
+    <script src="user.js"></script>
 </head>
 
 <body>
@@ -45,7 +46,13 @@
         </div>
         <!-- Fin card connexion -->
 
-    
+        <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <p>Les informations de connexion sont incorrectes.</p>
+            <button onclick="fermerModal('errorModal')">Fermer</button>
+        </div>
+    </div>
+
   </body>
 
 <!-- Script navbar -->
