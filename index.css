@@ -284,6 +284,14 @@ body {
 }
 /* Fin page déconnexion */
 
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top:
+
 /* Footer */
 footer {
     background-color: #ffffff;
